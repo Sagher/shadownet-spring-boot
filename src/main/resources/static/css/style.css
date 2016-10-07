@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+
+#map {
+  width: relative;
+  min-height: 500px;
+}
+
+table {
+	counter-reset: tableCount;
+}
+
+.counterCell:before {
+	content: counter(tableCount);
+	counter-increment: tableCount;
+}
+
+.span3 {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
+.btn{
+	height:50px;
+	width:120px;
+}
+​

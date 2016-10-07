@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Shadow-NET</title>
+<meta charset="utf-8"></meta>
+<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<script
+	src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+
+<link rel="stylesheet"
+	href="https://cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" />
+
+
+<script type="text/javascript" th:src="@{/js/d3.v3.min.js}"
+	src="../../js/d3.v3.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/topojson.v1.min.js}"
+	src="../../js/topojson.v1.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/loader.js}"
+	src="../../js/loader.js"></script>
+
+<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"
+	href="../../css/bootstrap.min.css" />
+
+<link rel="stylesheet" th:href="@{/css/style.css}"
+	href="../../css/style.css" />
+
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"
+	src="../../js/bootstrap.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/datamaps.world.min.js}"
+	src="../../js/datamaps.world.min.js"></script>
+
+<script type="text/javascript" th:src="@{/js/style.js}"
+	src="../../js/style.js"></script>
+
+</head>
+
+<body>
+
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target="#myNavbar">
+					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/"><b>Shadow-NET</b></a>
+			</div>
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="/">DashBoard</a></li>
+					<li class="dropdown"><a class="dropdown-toggle"
+						data-toggle="dropdown" href="/urls">Urls<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li><a href="/urls">Request Urls</a></li>
+
+						</ul></li>
+
+					<li><a href="/hashes">Hashes</a></li>
+					<li><a href="/setting">Settings</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>
+							Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<br />
+	<div class="container">
+		<div id="start">
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#probing"><text th:text="${pronum}" class="pronum"></text>
+						<p>Probing Attacks</p> </a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#malware"><text th:text="${malnum}" class="malnum"></text>
+						<p>Malware Attacks</p> </a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#web"><text th:text="${webnum}" class="webnum"></text>
+						<p>Web Attacks</p> </a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#sip"><text th:text="${sipnum}" class="sipnum"></text>
+						<p>SIP Attacks</p> </a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#ssh"><text th:text="${sshnum}" class="sshnum"></text>
+						<p>SSh Attacks</p> </a>
+				</div>
+			</div>
+			<div class="col-sm-2">
+				<div class="btn btn-default">
+					<a href="#db"><text th:text="${dbnum}" class="dbnum"></text>
+						<p>DB Attacks</p> </a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+		<div id="map" class="col-sm-12"></div>
+	</div>
+
+	<script>
+		var map = new Datamap({
+			element : document.getElementById('map')
+		});
+	</script>
+
+	<div class="container">
+		<br />
+		<ul class="nav nav-tabs ">
+			<li class="active"><a href="#probing">PROBING</a></li>
+			<li><a href="#malware">MALWARE</a></li>
+			<li><a href="#web">WEB</a></li>
+			<li><a href="#sip">SIP</a></li>
+			<li><a href="#ssh">>SSH</a></li>
+			<li><a href="#db">DB</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="probing" class="tab-pane fade in active">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${probes}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}" class="ip"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+
+
+
+			<div id="malware" class="tab-pane fade">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${malwares}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+
+			<div id="web" class="tab-pane fade">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${web}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div id="sip" class="tab-pane fade">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${sip}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="ssh" class="tab-pane fade">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${ssh}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+			<div id="db" class="tab-pane fade">
+				<br />
+				<div class="container span3">
+					<table class="table table-hover one">
+
+
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Time</th>
+								<th>Source</th>
+								<th>Destination</th>
+								<th>srcPort</th>
+								<th>destPort</th>
+								<th>Direction</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="packet : ${db}">
+								<td class="counterCell"></td>
+								<td th:text="${packet.Time}"></td>
+								<td th:text="${packet.SourceIP}"></td>
+								<td th:text="${packet.DestinationIP}"></td>
+								<td th:text="${packet.SourcePort}"></td>
+								<td th:text="${packet.DestPort}"></td>
+								<td th:text="${packet.Direction}"></td>
+								<td th:text="${packet.MaliciousType}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<br />
+	<br />
+	<br />
+
+
+	<div class="container">
+		<div id="chart_div" style="float: left"></div>
+
+		<div id="chart_div1" style="float: right"></div>
+	</div>
+
+
+	<script type="text/javascript">
+		// Load the Visualization API and the corechart package.
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
+		});
+
+		// Set a callback to run when the Google Visualization API is loaded.
+		google.charts.setOnLoadCallback(drawChart);
+
+		var pronum = parseInt($('#start').find('.pronum').text());
+		var malnum = parseInt($('#start').find('.malnum').text());
+		var webnum = parseInt($('#start').find('.webnum').text());
+		var sipnum = parseInt($('#start').find('.sipnum').text());
+		var sshnum = parseInt($('#start').find('.sshnum').text());
+		var dbnum = parseInt($('#start').find('.dbnum').text());
+
+		function drawChart() {
+
+			// Create the data table.
+			var data = new google.visualization.DataTable();
+			data.addColumn('string', 'Topping');
+			data.addColumn('number', 'Slices');
+			data.addRows([ [ 'PROBING', pronum ], [ 'WEB', webnum ],
+					[ 'MALWARE', malnum ], [ 'SIP', sipnum ],
+					[ 'SSH', sshnum ], [ 'DB', dbnum ] ]);
+
+			// Set chart options
+			var options = {
+				'title' : 'Pie Chart',
+				is3D : true,
+				'width' : 600,
+				'height' : 500
+			};
+
+			var options2 = {
+				'title' : 'Bar Chart',
+				is3D : true,
+				'width' : 500,
+				'height' : 400
+			};
+
+			// Instantiate and draw our chart, passing in some options.
+			var chart = new google.visualization.PieChart(document
+					.getElementById('chart_div'));
+			chart.draw(data, options);
+
+			var chart1 = new google.visualization.BarChart(document
+					.getElementById('chart_div1'));
+			chart1.draw(data, options2);
+
+		}
+	</script>
+</body>
+</html>
