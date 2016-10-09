@@ -17,13 +17,6 @@ public class PacketController {
 	public String home(Model model) {
 
 		// model.addAttribute("packets", packetRepo.findAll());
-		model.addAttribute("probes", packetRepo.findByMaliciousType("PROBING"));
-		model.addAttribute("malwares", packetRepo.findByMaliciousType("MALWARE"));
-		model.addAttribute("web", packetRepo.findByMaliciousType("WEB"));
-		model.addAttribute("sip", packetRepo.findByMaliciousType("SIP"));
-		model.addAttribute("ssh", packetRepo.findByMaliciousType("SSH"));
-		model.addAttribute("db", packetRepo.findByMaliciousType("DB"));
-		
 		model.addAttribute("pronum", packetRepo.countByMaliciousType("PROBING"));
 		model.addAttribute("malnum", packetRepo.countByMaliciousType("MALWARE"));
 		model.addAttribute("webnum", packetRepo.countByMaliciousType("WEB"));
@@ -33,21 +26,46 @@ public class PacketController {
 
 		return "index";
 	}
-	
+
+	@RequestMapping("/malicious-ips")
+	public String maliciousips(Model model) {
+
+		model.addAttribute("probes", packetRepo.findByMaliciousType("PROBING"));
+		model.addAttribute("malwares", packetRepo.findByMaliciousType("MALWARE"));
+		model.addAttribute("web", packetRepo.findByMaliciousType("WEB"));
+		model.addAttribute("sip", packetRepo.findByMaliciousType("SIP"));
+		model.addAttribute("ssh", packetRepo.findByMaliciousType("SSH"));
+		model.addAttribute("db", packetRepo.findByMaliciousType("DB"));
+
+		return "malicious-ips";
+
+	}
+
 	@RequestMapping("/urls")
-	public String urls(Model model){
-		
+	public String urls(Model model) {
+
 		model.addAttribute("urls", packetRepo.findByUrlCheck(true));
+
 		return "urls";
-		
+
 	}
-	
+
 	@RequestMapping("/hashes")
-	public String hashes(Model model){
-		
+	public String hashes(Model model) {
+
 		model.addAttribute("hashes", packetRepo.findByHashStatus(true));
+
 		return "hashes";
-		
+
 	}
-	
+
+	@RequestMapping("/del")
+	public String del(Model model) {
+
+		packetRepo.deleteAll();
+
+		return "redirect:/";
+
+	}
+
 }
