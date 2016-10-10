@@ -49,7 +49,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/emojify.js/0.9.5/emojify.min.js"></script>
 
 
-
 <script type="text/javascript" th:src="@{/js/d3.v3.min.js}"
 	src="../../js/d3.v3.min.js"></script>
 
@@ -231,7 +230,7 @@
 					</a>
 						<ul class="sub-menu">
 							<li><a href="#pie">Pie Chart</a></li>
-							<li><a href="#pie">Bar Chart </a></li>
+							<li><a href="#bar">Bar Chart </a></li>
 						</ul></li>
 
 
@@ -375,9 +374,9 @@
 					<h4 class="panel-title">Graphs</h4>
 				</div>
 				<div class="panel-body">
-					<div id="chart_div" style="float: left"></div>
+					<div id="pie" style="float: left"></div>
 
-					<div id="chart_div1" style="float: right"></div>
+					<div id="bar" style="float: right"></div>
 				</div>
 
 
@@ -425,11 +424,11 @@
 
 						// Instantiate and draw our chart, passing in some options.
 						var chart = new google.visualization.PieChart(document
-								.getElementById('chart_div'));
+								.getElementById('pie'));
 						chart.draw(data, options);
 
 						var chart1 = new google.visualization.BarChart(document
-								.getElementById('chart_div1'));
+								.getElementById('bar'));
 						chart1.draw(data, options2);
 
 					}

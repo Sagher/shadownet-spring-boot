@@ -12,10 +12,16 @@ Not complete yet.. Working on websockets for realtime notification of attacks.
 
 ---
 #### Home
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19210180/940b96c0-8d34-11e6-98b7-31b51f70af46.jpg)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225471/bc206ae0-8eb6-11e6-81eb-835bcfba13c8.png)
 
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19210181/940efc0c-8d34-11e6-860f-bc30a2484bcf.jpg)
-
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225469/bbf0d294-8eb6-11e6-90fb-69d5f9de9637.png)
 
 #### Graphs 
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19210182/941562fe-8d34-11e6-9c5e-646f693cf7a0.jpg)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225468/bbb89ffa-8eb6-11e6-9962-10ece7ae170a.png)
+
+
+#### Malicios Url Requests
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225472/bc237168-8eb6-11e6-9462-d63f55cf8e4b.png)
+
+####Malicious Responses
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225470/bbf3605e-8eb6-11e6-90ce-a2947de0a04e.png)
