@@ -282,11 +282,9 @@
 									<th>Source</th>
 									<th>Destination</th>
 									<th>srcPort</th>
-									<th>destPort</th>
-									<th>Direction</th>
 									<th>Type</th>
 									<th>Hash</th>
-									<th>HashStatus</th>
+									<th>Location</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -296,11 +294,9 @@
 									<td th:text="${packet.SourceIP}" class="ip"></td>
 									<td th:text="${packet.DestinationIP}"></td>
 									<td th:text="${packet.SourcePort}"></td>
-									<td th:text="${packet.DestPort}"></td>
-									<td th:text="${packet.Direction}"></td>
 									<td th:text="${packet.MaliciousType}"></td>
 									<td th:text="${packet.Hash}"></td>
-									<td th:text="${packet.HashStatus}"></td>
+									<td th:text="${packet.Location}"></td>
 								</tr>
 							</tbody>
 						</table>

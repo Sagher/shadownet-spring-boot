@@ -4,7 +4,6 @@ package com.shadow.net.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.shadow.net.Packet;
@@ -12,19 +11,16 @@ import com.shadow.net.Packet;
 
 public interface PacketRepository extends CrudRepository<Packet, String>{
 
-	List<Packet> findByMaliciousType(String MaliciousType);
+	List<Packet> findByMaliciousTypeOrderByTimeDesc(String MaliciousType);
 	
 	int countByMaliciousType(String MaliciousType);
 	
-	List<Packet> findByUrlCheck(Boolean UrlCheck);
+	List<Packet> findByUrlCheckOrderByTimeDesc(Boolean UrlCheck);
 	
-	List<Packet> findByHashStatus(Boolean HashStatus);
+	List<Packet> findByHashStatusOrderByTimeDesc(Boolean HashStatus);
 
+	List<Packet> deleteByMaliciousType(String MaliciousType);
 	
+	List<Packet> findByMaliciousTypeOrderByTimeDesc(String MaliciousType, Pageable pageable);
 	
-	//List<Packet> findByMaliciousType(String MaliciousType, Pageable pageable);
-	
-
-
-	//List<Packet> findByTime(String Time);
 }

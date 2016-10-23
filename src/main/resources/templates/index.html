@@ -95,8 +95,6 @@
 </head>
 
 
-
-
 <!-- ================== BEGIN BODY ================== -->
 <body>
 	<!-- begin #page-loader -->
@@ -134,7 +132,6 @@
 				</ul>
 
 
-
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -158,6 +155,7 @@
 							<li class="arrow"></li>
 							<li><a href="/">Dashboard</a></li>
 							<li><a href="javascript:;">Setting</a></li>
+							<li data-toggle="modal" data-target=".bd-example-modal-lg"><a href="javascript:;">Clear Database</a></li>
 							<li class="divider"></li>
 							<li><a href="javascript:;">Log Out</a></li>
 						</ul></li>
@@ -263,11 +261,7 @@
 			<!-- ======================= end page-header===================== -->
 
 
-
-
-
 			<!--  =========================Panel 1============================== -->
-
 
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -336,24 +330,12 @@
 						});
 					</script>
 
-					<div class="col-sm-12">
-						<a class="btn btn-danger pull-right" href="/del"> Clear DB </a>
-					</div>
 				</div>
-
-
-
 
 			</div>
 
 
-
-
-
-
-
-
-
+			<!-- =======================PANEL 2 =============== -->
 
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
@@ -374,9 +356,9 @@
 					<h4 class="panel-title">Graphs</h4>
 				</div>
 				<div class="panel-body">
-					<div id="pie" style="float: left"></div>
+					<div id="pie" class="col-sm-6"></div>
 
-					<div id="bar" style="float: right"></div>
+					<div id="bar" class="col-sm-6"></div>
 				</div>
 
 
@@ -411,15 +393,15 @@
 						var options = {
 							'title' : 'Pie Chart',
 							is3D : true,
-							'width' : 600,
-							'height' : 450
+							'width' : 400,
+							'height' : 350
 						};
 
 						var options2 = {
 							'title' : 'Bar Chart',
 							is3D : true,
-							'width' : 500,
-							'height' : 450
+							'width' : 400,
+							'height' : 350
 						};
 
 						// Instantiate and draw our chart, passing in some options.
@@ -435,17 +417,49 @@
 				</script>
 
 
-
-
 			</div>
+
+
+			<!-- ============================== -->
+
+
+
+
+			<!-- ============================= -->
 		</div>
 
 
-		<!-- ============================== -->
 	</div>
+
+	<!-- ============================== -->
 	<!-- end #content -->
 
-
+	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
+		aria-labelledby="myLargeModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Are you Sure?</h4>
+				</div>
+				<div class="modal-body">
+					<p>
+					<h5>This will erase all of the content stored in database.</h5>
+					</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">No</button>
+					<a href="/del"><button type="button" class="btn btn-danger"
+							data-dismiss="/del">Yes</button></a>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+	</div>
 
 	<!-- begin scroll to top btn -->
 	<a href="javascript:;"
@@ -453,6 +467,7 @@
 		data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	<!-- end scroll to top btn -->
 	<!-- end page container -->
+
 
 
 	<script>

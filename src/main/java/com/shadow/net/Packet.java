@@ -9,7 +9,7 @@ public class Packet {
 	@Id
 	public String id;
 
-	public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash;
+	public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash, location;
 
 	int sourcePort, destPort, segments;
 	
@@ -61,6 +61,10 @@ public class Packet {
 	
 	public Boolean getHashStatus(){
 		return hashStatus;
+	}
+	
+	public String getLocation(){
+		return location;
 	}
 
 }

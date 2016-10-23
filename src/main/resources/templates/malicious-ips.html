@@ -315,11 +315,11 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="packet : ${probes}">
+										<tr th:each="packet : ${probing}">
 											<td class="counterCell"></td>
 											<td th:text="${packet.Time}"></td>
 											<td th:text="${packet.SourceIP}" class="ip"></td>
@@ -327,7 +327,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -352,11 +352,11 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
-										<tr th:each="packet : ${malwares}">
+										<tr th:each="packet : ${malware}">
 											<td class="counterCell"></td>
 											<td th:text="${packet.Time}"></td>
 											<td th:text="${packet.SourceIP}"></td>
@@ -364,7 +364,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -385,7 +385,7 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -397,7 +397,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -416,7 +416,7 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -428,7 +428,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -448,7 +448,7 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -460,7 +460,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
@@ -480,7 +480,7 @@
 											<th>srcPort</th>
 											<th>destPort</th>
 											<th>Direction</th>
-											<th>Type</th>
+											<th>Location</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -492,7 +492,7 @@
 											<td th:text="${packet.SourcePort}"></td>
 											<td th:text="${packet.DestPort}"></td>
 											<td th:text="${packet.Direction}"></td>
-											<td th:text="${packet.MaliciousType}"></td>
+											<td th:text="${packet.Location}"></td>
 										</tr>
 									</tbody>
 								</table>
