@@ -4,12 +4,12 @@ package com.shadow.net.repository;
 import java.util.List;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.shadow.net.Packet;
 
 
-public interface PacketRepository extends CrudRepository<Packet, String>{
+public interface PacketRepository extends MongoRepository<Packet, String>{
 
 	List<Packet> findByMaliciousTypeOrderByTimeDesc(String MaliciousType);
 	
@@ -22,5 +22,6 @@ public interface PacketRepository extends CrudRepository<Packet, String>{
 	List<Packet> deleteByMaliciousType(String MaliciousType);
 	
 	List<Packet> findByMaliciousTypeOrderByTimeDesc(String MaliciousType, Pageable pageable);
+
 	
 }
