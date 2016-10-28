@@ -1,4 +1,4 @@
-package com.shadow.net;
+package com.shadow.net.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;

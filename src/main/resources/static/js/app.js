@@ -20,11 +20,11 @@ function refreshMessages(messages) {
 		if ((message.maliciousType.length != 4)
 				&& (message.direction == "INCOMING")) {
 			$(".media-list").append(
-					'&nbsp;&nbsp;<li style="float: left;background-color:#e1f4e9">'
-							+ message.time + '&nbsp;&emsp;&emsp;'
+					'<div class="col-sm-2" style="background-color:#e1f4e9;">'
+							+ message.time
 							+ '<br/> Source: <b>' + message.sourceIP + '<br/> '
 							+ message.maliciousType + ' <br/>'
-							+ message.location + '</b> </li>');
+							+ message.location + '</b> </div>');
 		} else {
 
 		}
@@ -32,15 +32,15 @@ function refreshMessages(messages) {
 	});
 }
 
-$(function() {
 
+$(function() {
 	connect();
 
 })
 
+
 $(document).ready(function() {
 	setInterval(function() {
-		var randomnumber = Math.floor(Math.random() * 100)
 		$.get("/messages", function(messages) {
 			refreshMessages(messages)
 		});

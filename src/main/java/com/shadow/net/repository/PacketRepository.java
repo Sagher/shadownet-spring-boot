@@ -6,7 +6,7 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-import com.shadow.net.Packet;
+import com.shadow.net.model.Packet;
 
 
 public interface PacketRepository extends MongoRepository<Packet, String>{

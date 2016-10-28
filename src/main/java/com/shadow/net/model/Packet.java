@@ -1,4 +1,4 @@
-package com.shadow.net;
+package com.shadow.net.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
