@@ -1,7 +1,5 @@
 #### Web based Dashboard/Gui for [Shadow-NET](https://github.com/Sagher/Shadow-NET)
  
-Not complete yet.. Working on websockets for realtime notification of attacks.
-
 
 #####Technologies Used:
 - [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
