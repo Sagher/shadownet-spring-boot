@@ -133,17 +133,6 @@
 
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<form class="navbar-form full-width">
-							<div class="form-group">
-								<input type="text" class="form-control"
-									placeholder="Enter keyword" />
-								<button type="submit" class="btn btn-search pull-right">
-									<i class="fa fa-search"></i>
-								</button>
-							</div>
-						</form>
-					</li>
 
 					<li class="dropdown navbar-user"><a href="javascript:;"
 						class="dropdown-toggle" data-toggle="dropdown"> <img
@@ -246,13 +235,22 @@
 
 		<!-- begin #content -->
 		<div id="content" class="content">
-			<!-- begin breadcrumb -->
-			<ol class="breadcrumb pull-right">
-				<li><a href="/">Home</a></li>
-				<li class="active">DashBoard</li>
 
-			</ol>
-			<!-- end breadcrumb -->
+
+			<div class="dropdown pull-right">
+				<button class="btn-sm btn-primary dropdown-toggle" type="button"
+					data-toggle="dropdown">
+					Filter <span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li><a href="#">Last Hour</a></li>
+					<li><a href="#">Last Day</a></li>
+					<li><a href="#">Last Week</a></li>
+				</ul>
+
+
+			</div>
+
 			<!-- begin page-header -->
 			<h1 class="page-header">
 				Dashboard <small>Real-time Attacks frequency</small>
@@ -276,11 +274,6 @@
 							class="btn btn-xs btn-icon btn-circle btn-danger"
 							data-click="panel-remove"><i class="fa fa-times"></i></a>
 					</div>
-					<h4 class="panel-title">DashBoard</h4>
-				</div>
-				<div class="panel-body"
-					style="max-height: 100px; background-color: #f9f9f9">
-
 					<script>
 						function startTime() {
 							var today = new Date();
@@ -293,9 +286,18 @@
 						}
 					</script>
 
+
+					<h4 class="panel-title">DashBoard</h4>
+				</div>
+				<div class="panel-body"
+					style="max-height: 100px; background-color: #f9f9f9">
+
+
+
 					<div id="jscroll" style="width: 100%;">
 						<div class="media-list row"></div>
 					</div>
+
 					<script>
 						$(function() {
 							$('#jscroll').slimScroll({
@@ -313,33 +315,32 @@
 					<div id="map"></div>
 
 					<script>
-						var arcs = new Datamap(
-								{
-									element : document.getElementById("map"),
-									scope : 'world',
-									fills : {
-										defaultFill : '#ABDDA4'
-									},
-									geographyConfig : {
-										hideAntarctica : false,
-										borderWidth : 1,
-										borderOpacity : 1,
-										borderColor : '',
-										popupOnHover : true, 
-										highlightOnHover : true,
-										highlightFillColor : '',
-										highlightBorderColor : '',
-										highlightBorderWidth : 1,
-										highlightBorderOpacity : 1
-									},
-									arcConfig : {
-										strokeColor : 'orange',
-										strokeWidth : 2,
-										arcSharpness : 1,
-										animationSpeed : 600
-									},
+						var arcs = new Datamap({
+							element : document.getElementById("map"),
+							scope : 'world',
+							fills : {
+								defaultFill : '#ABDDA4'
+							},
+							geographyConfig : {
+								hideAntarctica : false,
+								borderWidth : 1,
+								borderOpacity : 1,
+								borderColor : '',
+								popupOnHover : true,
+								highlightOnHover : true,
+								highlightFillColor : '',
+								highlightBorderColor : '',
+								highlightBorderWidth : 1,
+								highlightBorderOpacity : 1
+							},
+							arcConfig : {
+								strokeColor : 'orange',
+								strokeWidth : 2,
+								arcSharpness : 1,
+								animationSpeed : 600
+							},
 
-								});
+						});
 
 						setInterval(function() {
 							var cc = $('.countrycode').find('#div1').text();
