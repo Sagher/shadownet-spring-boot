@@ -95,7 +95,7 @@
 
 
 <!-- ================== BEGIN BODY ================== -->
-<body>
+<body onLoad="startTime()">
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in">
 		<span class="spinner"></span>
@@ -266,10 +266,7 @@
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
-						<a href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-default"
-							data-click="panel-expand"><i class="fa fa-expand"></i></a> <a
-							href="javascript:;"
+						<b id="time"></b> <a href="javascript:;"
 							class="btn btn-xs btn-icon btn-circle btn-success"
 							data-click="panel-reload"><i class="fa fa-repeat"></i></a> <a
 							href="javascript:;"
@@ -281,24 +278,89 @@
 					</div>
 					<h4 class="panel-title">DashBoard</h4>
 				</div>
-				<div class="panel-body" style="max-height: 100px">
+				<div class="panel-body"
+					style="max-height: 100px; background-color: #f9f9f9">
 
-					<iframe
-						src="http://free.timeanddate.com/clock/i5fkc5h6/n106/fn9/fs16/fcff9/tc000/ahr/ftb/pa12/tt0/tw1/th1/ta1/tb4"
-						class="pull-right" frameborder="0" width="216" height="60"></iframe>
+					<script>
+						function startTime() {
+							var today = new Date();
+							var h = today.getHours();
+							var m = today.getMinutes();
+							var s = today.getSeconds();
+							document.getElementById('time').innerHTML = h + ":"
+									+ m + ":" + s;
+							var t = setTimeout(startTime, 1000);
+						}
+					</script>
 
-
-					<ul class="media-list row">
-					</ul>
+					<div id="jscroll" style="width: 100%;">
+						<div class="media-list row"></div>
+					</div>
+					<script>
+						$(function() {
+							$('#jscroll').slimScroll({
+								height : '80px',
+								position : 'right',
+								railVisible : false,
+								alwaysVisible : false
+							});
+						});
+					</script>
 				</div>
 
-				<div class="panel-body">
+				<div class="panel-body" style="background-color: #f9f9f9">
 
 					<div id="map"></div>
+
 					<script>
-						var map = new Datamap({
-							element : document.getElementById("map")
-						});
+						var arcs = new Datamap(
+								{
+									element : document.getElementById("map"),
+									scope : 'world',
+									fills : {
+										defaultFill : '#ABDDA4'
+									},
+									geographyConfig : {
+										hideAntarctica : false,
+										borderWidth : 1,
+										borderOpacity : 1,
+										borderColor : '',
+										popupOnHover : true, 
+										highlightOnHover : true,
+										highlightFillColor : '',
+										highlightBorderColor : '',
+										highlightBorderWidth : 1,
+										highlightBorderOpacity : 1
+									},
+									arcConfig : {
+										strokeColor : 'orange',
+										strokeWidth : 2,
+										arcSharpness : 1,
+										animationSpeed : 600
+									},
+
+								});
+
+						setInterval(function() {
+							var cc = $('.countrycode').find('#div1').text();
+							var c2 = $('.countrycode').find('#div2').text();
+							var c3 = $('.countrycode').find('#div3').text();
+							var c4 = $('.countrycode').find('#div4').text();
+
+							arcs.arc([ {
+								origin : cc,
+								destination : 'PAK'
+							}, {
+								origin : c2,
+								destination : 'PAK'
+							}, {
+								origin : c3,
+								destination : 'PAK'
+							}, {
+								origin : c4,
+								destination : 'PAK'
+							} ]);
+						}, 2200);
 					</script>
 					<div id="start">
 						<div class="col-sm-2">
@@ -337,7 +399,7 @@
 								<p>DB Attacks</p>
 							</a>
 						</div>
-						
+
 
 					</div>
 
@@ -431,7 +493,7 @@
 			</div>
 
 			<!-- =========== PANEL 3 =================== -->
-
+			<div class="countrycode" style="display: none"></div>
 
 
 

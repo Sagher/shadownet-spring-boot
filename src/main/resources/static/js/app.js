@@ -1,4 +1,5 @@
 var stompClient = null;
+var con = "";
 function connect() {
 	var socket = new SockJS('/newMessage');
 	stompClient = Stomp.over(socket);
@@ -14,30 +15,49 @@ function disconnect() {
 	}
 }
 
+var count = 1;
 function refreshMessages(messages) {
 	$(".media-list").html("");
-	$.each(messages, function(i, message) {
-		if ((message.maliciousType.length != 4)
-				&& (message.direction == "INCOMING")) {
-			$(".media-list").append(
-					'<div class="col-sm-2" style="background-color:#e1f4e9;">'
-							+ message.time
-							+ '<br/> Source: <b>' + message.sourceIP + '<br/> '
-							+ message.maliciousType + ' <br/>'
-							+ message.location + '</b> </div>');
-		} else {
+	$
+			.each(
+					messages,
+					function(i, message) {
+						if ((message.maliciousType.length != 4)
+								&& (message.direction == "INCOMING")) {
+							$(".media-list")
+									.append(
+											'<div class="col-sm-3" style="padding-top:10px;"><div style="height:63px; width:4px;background:#d17d00;float:left"></div>&nbsp;'
+													+ message.time
+													+ '<br/>&nbsp;Source: <b>'
+													+ message.sourceIP
+													+ '<br/> &nbsp;'
+													+ message.maliciousType
+													+ ' <br/> &nbsp;'
+													+ message.location
+													+ '&nbsp;, '
+													+ message.countryCode
+													+ '</b> </div>');
 
-		}
+							if (count > 4) {
+								$(".countrycode").html("");
+								count=1;
+							} else {
+								var html = "<div id='div" + count + "'>"
+										+ message.countryCode + "</div>";
+								$(".countrycode").append(html);
+								count++;
+							}
+						} else {
 
-	});
+						}
+
+					});
 }
-
 
 $(function() {
 	connect();
 
 })
-
 
 $(document).ready(function() {
 	setInterval(function() {

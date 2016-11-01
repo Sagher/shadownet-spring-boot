@@ -9,7 +9,7 @@ public class Packet {
 	@Id
 	public String id;
 
-	public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash, location;
+	public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash, location,countryCode;
 
 	int sourcePort, destPort, segments;
 	
@@ -65,6 +65,10 @@ public class Packet {
 	
 	public String getLocation(){
 		return location;
+	}
+	
+	public String getCountryCode(){
+		return countryCode;
 	}
 
 }

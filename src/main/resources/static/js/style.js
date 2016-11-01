@@ -5,7 +5,7 @@ $(document).ready(function() {
 	});
 });
 
-//implementing datatables
-$(window).on('load',function() {
+// implementing datatables
+$(window).on('load', function() {
 	$('.one').dataTable();
 });
