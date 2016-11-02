@@ -6,19 +6,17 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Shadow-NET :: Hashes</title>
+<title>Shadow-NET :: Setting</title>
+
 
 <!-- ========================================================== -->
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet" />
+
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script
-	src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-
-<link rel="stylesheet" th:href="@{/assets/css/dataTables.min.css}"
-	href="../../assets/css/dataTables.min.css" />
 
 <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}"
 	href="../../assets/css/jquery-ui.min.css" />
@@ -42,33 +40,15 @@
 	th:href="@{/assets/css/emojify-emoticons.min.css}"
 	href="../../assets/css/emojify-emoticons.min.css" />
 
-<script type="text/javascript" th:src="@{/assets/js/sockjs.min.js}"
-	src="../../assets/js/sockjs.min.js"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/stomp.min.js}"
-	src="../../assets/js/stomp.min.js"></script>
 
 <script type="text/javascript" th:src="@{/assets/js/emojify.min.js}"
 	src="../../assets/js/emojify.min.js"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/d3.v3.min.js}"
-	src="../../assets/js/d3.v3.min.js"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/topojson.v1.min.js}"
-	src="../../assets/js/topojson.v1.min.js"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/loader.js}"
-	src="../../assets/js/loader.js"></script>
 
 <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"
 	href="../../assets/css/bootstrap.min.css" />
 
 <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"
 	src="../../assets/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	th:src="@{/assets/js/datamaps.world.min.js}"
-	src="../../assets/js/datamaps.world.min.js"></script>
 
 <link rel="stylesheet" th:href="@{/assets/css/animate.min.css}"
 	href="../../assets/css/animate.min.css" />
@@ -87,9 +67,6 @@
 
 <link rel="stylesheet" th:href="@{/css/style.css}"
 	href="../../css/style.css" />
-
-<script type="text/javascript" th:src="@{/js/style.js}"
-	src="../../js/style.js"></script>
 
 </head>
 
@@ -123,8 +100,8 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/">DashBoard</a></li>
 					<li><a href="/urls">Request Urls</a></li>
-					<li class="active"><a href="/hashes">Hashes</a></li>
-					<li><a href="/setting">Settings</a></li>
+					<li><a href="/hashes">Hashes</a></li>
+					<li class="active"><a href="/setting">Settings</a></li>
 				</ul>
 
 				<!-- begin header navigation right -->
@@ -137,7 +114,7 @@
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
 							<li><a href="/">Dashboard</a></li>
-							<li><a href="/setting">Setting</a></li>
+							<li class="active"><a href="/setting">Setting</a></li>
 							<li class="divider"></li>
 							<li><a href="javascript:;">Log Out</a></li>
 						</ul></li>
@@ -168,8 +145,8 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li class=""><a href="/"> <b class="caret pull-right"></b>
-							<i class="fa fa-laptop"></i> <span> Dashboard </span>
+					<li><a href="/"> <b class="caret pull-right"></b> <i
+							class="fa fa-laptop"></i> <span> Dashboard </span>
 					</a></li>
 
 					<li class="has-sub"><a href="#"><b
@@ -191,7 +168,7 @@
 							<li><a href="/urls">Request Urls</a></li>
 						</ul></li>
 
-					<li class="active has-sub"><a href="#"> <b
+					<li class="has-sub"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-suitcase"></i> <span>Malicious
 								Responses</span>
 					</a>
@@ -222,65 +199,24 @@
 
 		<!-- begin #content -->
 		<div id="content" class="content">
-			<!-- begin breadcrumb -->
-			<ol class="breadcrumb pull-right">
-				<li><a href="/">Home</a></li>
-				<li>DashBoard</li>
-				<li class="active">Hashes</li>
-			</ol>
-			<!-- end breadcrumb -->
+
 			<!-- begin page-header -->
-			<h1 class="page-header">
-				Malicious Hashes <small>Md5 Hash of Malicious Responses</small>
-			</h1>
+			<h1 class="page-header">Settings</h1>
 
 			<!--  =========================Panel 1============================== -->
 
 			<div class="panel panel-inverse">
 
-				<div class="panel-body">
-					<div id="" class="tab-pane fade in active">
-						<table class="table table-hover one">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Time</th>
-									<th>Source</th>
-									<th>Destination</th>
-									<th>srcPort</th>
-									<th>Type</th>
-									<th>Hash</th>
-									<th>Location</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="packet : ${hashes}">
-									<td class="counterCell"></td>
-									<td th:text="${packet.Time}"></td>
-									<td th:text="${packet.SourceIP}" class="ip"></td>
-									<td th:text="${packet.DestinationIP}"></td>
-									<td th:text="${packet.SourcePort}"></td>
-									<td th:text="${packet.MaliciousType}"></td>
-									<td th:text="${packet.Hash}"></td>
-									<td th:text="${packet.Location}"></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
+				<div class="panel-body"></div>
+				<div class="container"></div>
 			</div>
 
-			<!-- ============================== -->
+			<!-- ============================= -->
 		</div>
-		<!-- end #content -->
-
-		<!-- begin scroll to top btn -->
-		<a href="javascript:;"
-			class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
-			data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-		<!-- end scroll to top btn -->
 	</div>
-	<!-- end page container -->
+
+	<!-- ============================== -->
+	<!-- end #content -->
 
 	<script>
 		$(document).ready(function() {
@@ -290,9 +226,4 @@
 
 </body>
 </html>
-
-
-
-
-
 

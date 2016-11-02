@@ -6,9 +6,11 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Shadow-NET :: Hashes</title>
+<title>Shadow-NET :: Dashboard</title>
+
 
 <!-- ========================================================== -->
+
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
 	rel="stylesheet" />
@@ -123,7 +125,7 @@
 				<ul class="nav navbar-nav">
 					<li><a href="/">DashBoard</a></li>
 					<li><a href="/urls">Request Urls</a></li>
-					<li class="active"><a href="/hashes">Hashes</a></li>
+					<li><a href="/hashes">Hashes</a></li>
 					<li><a href="/setting">Settings</a></li>
 				</ul>
 
@@ -147,6 +149,7 @@
 			<!-- end container-fluid -->
 		</div>
 		<!-- end #header -->
+
 
 		<!-- =================begin #sidebar ===================== -->
 		<div id="sidebar" class="sidebar">
@@ -172,14 +175,14 @@
 							<i class="fa fa-laptop"></i> <span> Dashboard </span>
 					</a></li>
 
-					<li class="has-sub"><a href="#"><b
+					<li class="active has-sub"><a href="#"><b
 							class="caret pull-right"></b><i class="fa fa-list-alt"></i><span>MaliciousIPs</span></a>
 						<ul class="sub-menu">
 							<li><a href="/probing">PROBING</a></li>
 							<li><a href="/malware">MALWARE</a></li>
 							<li><a href="/web">WEB</a></li>
 							<li><a href="/sip">SIP</a></li>
-							<li><a href="/ssh">SSH</a></li>
+							<li class="active"><a href="/ssh">SSH</a></li>
 							<li><a href="/db">DB</a></li>
 						</ul></li>
 
@@ -191,7 +194,7 @@
 							<li><a href="/urls">Request Urls</a></li>
 						</ul></li>
 
-					<li class="active has-sub"><a href="#"> <b
+					<li class="has-sub"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-suitcase"></i> <span>Malicious
 								Responses</span>
 					</a>
@@ -225,47 +228,52 @@
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="/">Home</a></li>
-				<li>DashBoard</li>
-				<li class="active">Hashes</li>
+				<li>Malicious IPs</li>
+				<li class="active">SSH</li>
 			</ol>
 			<!-- end breadcrumb -->
 			<!-- begin page-header -->
 			<h1 class="page-header">
-				Malicious Hashes <small>Md5 Hash of Malicious Responses</small>
+				SSH IPs <small>Detailed</small>
 			</h1>
 
 			<!--  =========================Panel 1============================== -->
 
 			<div class="panel panel-inverse">
-
 				<div class="panel-body">
-					<div id="" class="tab-pane fade in active">
-						<table class="table table-hover one">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Time</th>
-									<th>Source</th>
-									<th>Destination</th>
-									<th>srcPort</th>
-									<th>Type</th>
-									<th>Hash</th>
-									<th>Location</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr th:each="packet : ${hashes}">
-									<td class="counterCell"></td>
-									<td th:text="${packet.Time}"></td>
-									<td th:text="${packet.SourceIP}" class="ip"></td>
-									<td th:text="${packet.DestinationIP}"></td>
-									<td th:text="${packet.SourcePort}"></td>
-									<td th:text="${packet.MaliciousType}"></td>
-									<td th:text="${packet.Hash}"></td>
-									<td th:text="${packet.Location}"></td>
-								</tr>
-							</tbody>
-						</table>
+					<div class="container">
+						<br />
+						<div class="tab-content">
+							<div id="ssh" class="tab-pane fade in active">
+								<br />
+								<table class="table table-hover one">
+									<thead>
+										<tr>
+											<th>#</th>
+											<th>Time</th>
+											<th>Source</th>
+											<th>Destination</th>
+											<th>srcPort</th>
+											<th>destPort</th>
+											<th>Direction</th>
+											<th>Location</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="packet : ${ssh}">
+											<td class="counterCell"></td>
+											<td th:text="${packet.Time}"></td>
+											<td th:text="${packet.SourceIP}" class="ip"></td>
+											<td th:text="${packet.DestinationIP}"></td>
+											<td th:text="${packet.SourcePort}"></td>
+											<td th:text="${packet.DestPort}"></td>
+											<td th:text="${packet.Direction}"></td>
+											<td th:text="${packet.Location}"></td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -290,9 +298,3 @@
 
 </body>
 </html>
-
-
-
-
-
-

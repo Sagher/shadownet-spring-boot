@@ -4,14 +4,12 @@
 <html lang="en">
 <!--<![endif]-->
 
-<!-- Mirrored from www.seantheme.com/color-admin-v1.8/admin/html/ by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 26 Sep 2015 08:03:11 GMT -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Shadow-NET :: Urls</title>
 
 
 <!-- ========================================================== -->
-
 
 <link
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css"
@@ -21,7 +19,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
-
 
 <link rel="stylesheet" th:href="@{/assets/css/dataTables.min.css}"
 	href="../../assets/css/dataTables.min.css" />
@@ -102,13 +99,12 @@
 
 <!-- ================== BEGIN BODY ================== -->
 <body>
-		<!-- begin #page-loader -->
+	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in">
 		<span class="spinner"></span>
 	</div>
 	<!-- end #page-loader -->
-
-
+	
 	<!-- begin #page-container -->
 	<div id="page-container"
 		class="fade page-sidebar-minified page-sidebar-fixed page-header-fixed">
@@ -128,7 +124,6 @@
 					<!-- end mobile sidebar expand / collapse button -->
 				</div>
 
-
 				<ul class="nav navbar-nav">
 					<li><a href="/">DashBoard</a></li>
 					<li class="active"><a href="/urls">Request Urls</a></li>
@@ -136,22 +131,8 @@
 					<li><a href="/setting">Settings</a></li>
 				</ul>
 
-
-
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
-					<li>
-						<form class="navbar-form full-width">
-							<div class="form-group">
-								<input type="text" class="form-control"
-									placeholder="Enter keyword" />
-								<button type="submit" class="btn btn-search">
-									<i class="fa fa-search"></i>
-								</button>
-							</div>
-						</form>
-					</li>
-
 					<li class="dropdown navbar-user"><a href="javascript:;"
 						class="dropdown-toggle" data-toggle="dropdown"> <img
 							src="assets/img/user-7.jpg" alt="" /> <span class="hidden-xs">Admin</span>
@@ -160,7 +141,7 @@
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
 							<li><a href="/">Dashboard</a></li>
-							<li><a href="javascript:;">Setting</a></li>
+							<li><a href="/setting">Setting</a></li>
 							<li class="divider"></li>
 							<li><a href="javascript:;">Log Out</a></li>
 						</ul></li>
@@ -192,24 +173,23 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-laptop"></i> <span>
-								Dashboard </span>
-					</a>
+					<li><a href="/"> <b class="caret pull-right"></b> <i
+							class="fa fa-laptop"></i> <span> Dashboard </span>
+					</a></li>
+
+					<li class="has-sub"><a href="#"><b
+							class="caret pull-right"></b><i class="fa fa-list-alt"></i><span>MaliciousIPs</span></a>
 						<ul class="sub-menu">
-							<li class="has-sub "><a href="/malicious-ips">Malicious IPs </a>
-								<ul class="sub-menu">
-									<li>PROBING</li>
-									<li>MALWARE</li>
-									<li>WEB</li>
-									<li>SIP</li>
-									<li>SSH</li>
-									<li>DB</li>
-								</ul></li>
+							<li><a href="/probing">PROBING</a></li>
+							<li><a href="/malware">MALWARE</a></li>
+							<li><a href="/web">WEB</a></li>
+							<li><a href="/sip">SIP</a></li>
+							<li><a href="/ssh">SSH</a></li>
+							<li><a href="/db">DB</a></li>
 						</ul></li>
 
 
-					<li class="has-sub active"><a href="#"> <b
+					<li class="active has-sub"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-th"></i> <span>Malicious
 								Requests</span>
 					</a>
@@ -231,8 +211,8 @@
 								Graphs </span>
 					</a>
 						<ul class="sub-menu">
-							<li><a href="#">Pie Chart</a></li>
-							<li><a href="#">Bar Chart </a></li>
+							<li><a href="/">Pie Chart</a></li>
+							<li><a href="/">Bar Chart </a></li>
 						</ul></li>
 
 
@@ -248,7 +228,6 @@
 		<div class="sidebar-bg"></div>
 		<!-- end #sidebar -->
 
-
 		<!-- begin #content -->
 		<div id="content" class="content">
 			<!-- begin breadcrumb -->
@@ -263,15 +242,11 @@
 				Malicious Requests <small>Outgoing Http Requests</small>
 			</h1>
 
-			<!-- ======================= end page-header===================== -->
-
-
-
-			<!--  =========================Panel 3============================== -->
+			<!--  =========================Panel 1============================== -->
 
 
 			<div class="panel panel-inverse">
-				
+
 				<div class="panel-body">
 
 					<div id="urls" class="tab-pane fade in active">
@@ -297,25 +272,19 @@
 									<td th:text="${packet.DestinationIP}"></td>
 									<td th:text="${packet.DestPort}"></td>
 									<td th:text="${packet.MaliciousType}"></td>
-									<td th:text="${packet.RequestUrl}" style="max-width:200px; overflow-x:hidden"></td>
+									<td th:text="${packet.RequestUrl}"
+										style="max-width: 200px; overflow-x: hidden"></td>
 									<td th:text="${packet.Location}"></td>
 								</tr>
 							</tbody>
 						</table>
-
-
-
 					</div>
-
 				</div>
 			</div>
-
 
 			<!-- ============================== -->
 		</div>
 		<!-- end #content -->
-
-
 
 		<!-- begin scroll to top btn -->
 		<a href="javascript:;"
@@ -324,7 +293,6 @@
 		<!-- end scroll to top btn -->
 	</div>
 	<!-- end page container -->
-
 
 	<script>
 		$(document).ready(function() {

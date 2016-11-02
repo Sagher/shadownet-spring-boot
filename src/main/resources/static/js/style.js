@@ -6,6 +6,6 @@ $(document).ready(function() {
 });
 
 // implementing datatables
-$(window).on('load', function() {
+$(window).ready(function() {
 	$('.one').dataTable();
 });

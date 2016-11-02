@@ -1,5 +1,5 @@
 var stompClient = null;
-var con = "";
+
 function connect() {
 	var socket = new SockJS('/newMessage');
 	stompClient = Stomp.over(socket);
@@ -8,11 +8,6 @@ function connect() {
 			refreshMessages(JSON.parse(JSON.parse(message.body).content));
 		});
 	});
-}
-function disconnect() {
-	if (stompClient != null) {
-		stompClient.disconnect();
-	}
 }
 
 var count = 1;
@@ -26,7 +21,7 @@ function refreshMessages(messages) {
 								&& (message.direction == "INCOMING")) {
 							$(".media-list")
 									.append(
-											'<div class="col-sm-3" style="padding-top:10px;"><div style="height:63px; width:4px;background:#d17d00;float:left"></div>&nbsp;'
+											'<div class="col-sm-3 animated" style="padding-top:10px;"><div style="height:63px; width:4px;background:#d17d00;float:left"></div>&nbsp;'
 													+ message.time
 													+ '<br/>&nbsp;Source: <b>'
 													+ message.sourceIP
