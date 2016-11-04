@@ -1,10 +1,6 @@
 #### Web based Dashboard/Gui for [Shadow-NET](https://github.com/Sagher/Shadow-NET)
  
 
-Default credentials:
-Username: admin
-Password: admin
-
 #####Technologies Used:
 - [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
 - [Thymeleaf](http://www.thymeleaf.org/)
