@@ -109,8 +109,8 @@
 			<div class="container-fluid">
 				<!-- begin mobile sidebar expand / collapse button -->
 				<div class="navbar-header">
-					<a href="/" class="navbar-brand"><span class="navbar-logo"></span>
-						<b>Shadow-NET</b></a>
+					<a href="/" class="navbar-brand"><i class="fa fa-tachometer"
+						aria-hidden="true"></i> <b>Shadow-NET</b></a>
 					<button type="button" class="navbar-toggle"
 						data-click="sidebar-toggled">
 						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -131,7 +131,8 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li class="dropdown navbar-user"><a href="javascript:;"
 						class="dropdown-toggle" data-toggle="dropdown"> <img
-							src="assets/img/user-7.jpg" alt="" /> <span class="hidden-xs">Admin</span>
+							src="assets/img/user-7.jpg" alt="" /> <span class="hidden-xs"><text
+									th:inline="text"> [[${#httpServletRequest.remoteUser}]]</text></span>
 							<b class="caret"></b>
 					</a>
 						<ul class="dropdown-menu animated fadeInLeft">
@@ -141,7 +142,12 @@
 							<li data-toggle="modal" data-target=".bd-example-modal-lg"><a
 								href="javascript:;">Clear Database</a></li>
 							<li class="divider"></li>
-							<li><a href="javascript:;">Log Out</a></li>
+							<li style="padding-left: 10px">
+								<form th:action="@{/logout}" method="post">
+									<button class="btn-xs btn-default" type="submit">Log
+										Out</button>
+								</form>
+							</li>
 						</ul></li>
 				</ul>
 				<!-- end header navigation right -->
@@ -230,9 +236,9 @@
 					Filter <span class="caret"></span>
 				</button>
 				<ul class="dropdown-menu">
-					<li><a href="/hour">Last Hour</a></li>
-					<li><a href="#">Last Day</a></li>
-					<li><a href="#">Last Week</a></li>
+					<li><a href="/?filter=hour">Last Hour</a></li>
+					<li><a href="/?filter=day">Last Day</a></li>
+					<li><a href="/">All</a></li>
 				</ul>
 			</div>
 
@@ -247,9 +253,6 @@
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
 						<b id="time"></b> <a href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-success"
-							data-click="panel-reload"><i class="fa fa-repeat"></i></a> <a
-							href="javascript:;"
 							class="btn btn-xs btn-icon btn-circle btn-warning"
 							data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
 							href="javascript:;"
@@ -288,83 +291,105 @@
 
 					<div id="start">
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/probing"> <text
-									th:text="${pronum}" class="pronum" />
-								<p>Probing Attacks</p>
+							<a href="/probing">
+								<button class="btn btn-secondary">
+									<text th:text="${pronum}" class="pronum" />
+									<p>Probing Attacks</p>
+								</button>
 							</a>
 						</div>
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/malware"> <text
-									th:text="${malnum}" class="malnum" />
-								<p>Malware Attacks</p>
+							<a href="/malware">
+								<button class="btn btn-secondary">
+									<text th:text="${malnum}" class="malnum" />
+									<p>Malware Attacks</p>
+								</button>
 							</a>
 						</div>
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/web"> <text
-									th:text="${webnum}" class="webnum" />
-								<p>Web Attacks</p>
+							<a href="/web">
+								<button class="btn btn-secondary">
+									<text th:text="${webnum}" class="webnum" />
+									<p>Web Attacks</p>
+								</button>
 							</a>
 						</div>
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/sip"> <text
-									th:text="${sipnum}" class="sipnum" />
-								<p>SIP Attacks</p>
+							<a href="/sip">
+								<button class="btn btn-secondary">
+									<text th:text="${sipnum}" class="sipnum" />
+									<p>SIP Attacks</p>
+								</button>
 							</a>
 						</div>
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/ssh"> <text
-									th:text="${sshnum}" class="sshnum" />
-								<p>SSH Attacks</p>
-							</a>
+							<a href="/ssh"><button class="btn btn-secondary">
+									<text th:text="${sshnum}" class="sshnum" />
+									<p>SSH Attacks</p>
+								</button> </a>
 						</div>
 						<div class="col-sm-2">
-							<a class="btn btn-info" href="/db"> <text th:text="${dbnum}"
-									class="dbnum" />
-								<p>DB Attacks</p>
-							</a>
+							<a href="/db"><button class="btn btn-secondary">
+									<text th:text="${dbnum}" class="dbnum" />
+									<p>DB Attacks</p>
+								</button> </a>
 						</div>
 					</div>
 				</div>
 			</div>
 
 			<!-- =======================PANEL 2 =============== -->
-
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<div class="panel-heading-btn">
-						<a href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-default"
-							data-click="panel-expand"><i class="fa fa-expand"></i></a> <a
-							href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-success"
-							data-click="panel-reload"><i class="fa fa-repeat"></i></a> <a
-							href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-warning"
-							data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
-							href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-danger"
-							data-click="panel-remove"><i class="fa fa-times"></i></a>
+			<div class="col-sm-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<div class="panel-heading-btn">
+							<a href="javascript:;"
+								class="btn btn-xs btn-icon btn-circle btn-warning"
+								data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
+								href="javascript:;"
+								class="btn btn-xs btn-icon btn-circle btn-danger"
+								data-click="panel-remove"><i class="fa fa-times"></i></a>
+						</div>
+						<h4 class="panel-title">Pie Graph</h4>
 					</div>
-					<h4 class="panel-title">Graphs</h4>
-				</div>
-				<div class="panel-body">
-					<div id="pie" class="col-sm-6"></div>
+					<div class="panel-body">
+						<div id="pie"></div>
 
-					<div id="bar" class="col-sm-6"></div>
-
-					<script type="text/javascript" th:src="@{/js/charts.js}"
-						src="../../js/charts.js"></script>
+						<script type="text/javascript" th:src="@{/js/charts.js}"
+							src="../../js/charts.js"></script>
+					</div>
 				</div>
 			</div>
 
 			<!-- =========== PANEL 3 =================== -->
+			<div class="col-sm-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<div class="panel-heading-btn">
+							<a href="javascript:;"
+								class="btn btn-xs btn-icon btn-circle btn-warning"
+								data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
+								href="javascript:;"
+								class="btn btn-xs btn-icon btn-circle btn-danger"
+								data-click="panel-remove"><i class="fa fa-times"></i></a>
+						</div>
+						<h4 class="panel-title">Bar Graph</h4>
+					</div>
+					<div class="panel-body">
+						<div id="bar"></div>
+
+						<script type="text/javascript" th:src="@{/js/charts.js}"
+							src="../../js/charts.js"></script>
+					</div>
+				</div>
+			</div>
 			<div class="countrycode" style="display: none"></div>
 
 			<!-- ============================= -->
 		</div>
-	</div>
 
-	<!-- end #content -->
+		<!-- end #content -->
+	</div>
 	<!-- ============================== -->
 
 	<!-- CLEAR DB: MODAL -->

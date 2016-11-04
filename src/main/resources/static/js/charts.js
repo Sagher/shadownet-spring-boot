@@ -27,15 +27,15 @@ function drawChart() {
 	var options = {
 		'title' : 'Pie Chart',
 		is3D : true,
-		'width' : 400,
-		'height' : 350
+		'width' : 350,
+		'height' : 300
 	};
 
 	var options2 = {
 		'title' : 'Bar Chart',
 		is3D : true,
-		'width' : 400,
-		'height' : 350
+		'width' : 350,
+		'height' : 300
 	};
 
 	// Instantiate and draw our chart, passing in some options.

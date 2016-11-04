@@ -20,5 +20,5 @@ public interface PacketRepository extends MongoRepository<Packet, String> {
 	List<Packet> deleteByMaliciousType(String MaliciousType);
 
 	List<Packet> findByMaliciousTypeOrderByTimeDesc(String MaliciousType, Pageable pageable);
-
+	
 }

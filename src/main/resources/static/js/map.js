@@ -5,7 +5,7 @@ var arcs = new Datamap({
 		defaultFill : '#ABDDA4'
 	},
 	geographyConfig : {
-		hideAntarctica : false,
+		hideAntarctica : true,
 		borderWidth : 1,
 		borderOpacity : 1,
 		borderColor : '#FDFDFD',
@@ -17,7 +17,7 @@ var arcs = new Datamap({
 		highlightBorderOpacity : 1
 	},
 	arcConfig : {
-		strokeColor : 'orange',
+		strokeColor : 'red',
 		strokeWidth : 2,
 		arcSharpness : 1,
 		animationSpeed : 600
