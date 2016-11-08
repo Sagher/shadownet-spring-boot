@@ -17,8 +17,7 @@ function refreshMessages(messages) {
 			.each(
 					messages,
 					function(i, message) {
-						if ((message.maliciousType.length != 4)
-								&& (message.direction == "INCOMING")) {
+						if (message.countryCode != null) {
 							$(".media-list")
 									.append(
 											'<div class="col-sm-3 animated" style="padding-top:10px;"><div style="height:63px; width:4px;background:#d17d00;float:left"></div>&nbsp;'

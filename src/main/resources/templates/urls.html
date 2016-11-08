@@ -171,7 +171,9 @@
 								alt="" /></a>
 						</div>
 						<div class="info">
-							John Doe <small>Network Administrator</small>
+							<text th:inline="text">
+							[[${#httpServletRequest.remoteUser}]]</text>
+							<small>Network Administrator</small>
 						</div>
 					</li>
 				</ul>
