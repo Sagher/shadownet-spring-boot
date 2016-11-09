@@ -6,12 +6,12 @@ google.charts.load('current', {
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
 
-var pronum = parseInt($('#start').find('.pronum').text());
-var malnum = parseInt($('#start').find('.malnum').text());
-var webnum = parseInt($('#start').find('.webnum').text());
-var sipnum = parseInt($('#start').find('.sipnum').text());
-var sshnum = parseInt($('#start').find('.sshnum').text());
-var dbnum = parseInt($('#start').find('.dbnum').text());
+var pronum = parseInt($('#pcount').find('.pronum').text());
+var malnum = parseInt($('#pcount').find('.malnum').text());
+var webnum = parseInt($('#pcount').find('.webnum').text());
+var sipnum = parseInt($('#pcount').find('.sipnum').text());
+var sshnum = parseInt($('#pcount').find('.sshnum').text());
+var dbnum = parseInt($('#pcount').find('.dbnum').text());
 
 function drawChart() {
 
@@ -28,14 +28,14 @@ function drawChart() {
 		'title' : 'Pie Chart',
 		is3D : true,
 		'width' : 380,
-		'height' : 320
+		'height' : '100%'
 	};
 
 	var options2 = {
 		'title' : 'Bar Chart',
 		is3D : true,
 		'width' : 380,
-		'height' : 320
+		'height' : '100%'
 	};
 
 	// Instantiate and draw our chart, passing in some options.

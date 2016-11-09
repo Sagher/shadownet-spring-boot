@@ -23,7 +23,7 @@
 
 <link rel="stylesheet" th:href="@{/assets/css/dataTables.min.css}"
 	href="../../assets/css/dataTables.min.css" />
-	
+
 <link rel="stylesheet" th:href="@{/assets/css/jquery-ui.min.css}"
 	href="../../assets/css/jquery-ui.min.css" />
 
@@ -163,7 +163,7 @@
 		<!-- end #header -->
 
 		<!-- =================begin #sidebar ===================== -->
-		<div id="sidebar" class="sidebar" >
+		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
 			<div data-scrollbar="true" data-height="100%">
 				<!-- begin sidebar user -->
@@ -297,51 +297,48 @@
 							src="../../js/map.js"></script>
 					</div>
 
-					<div id="start">
+					<div id="pcount">
+
 						<div class="col-sm-2">
-							<a href="/probing">
-								<button class="btn btn-secondary">
-									<text th:text="${pronum}" class="pronum" />
-									<p>Probing Attacks</p>
-								</button>
-							</a>
+							<button id="probing" class="btn btn-default">
+								<text th:text="${pronum}" class="pronum" />
+								<p>Probing Attacks</p>
+							</button>
 						</div>
 						<div class="col-sm-2">
-							<a href="/malware">
-								<button class="btn btn-secondary">
-									<text th:text="${malnum}" class="malnum" />
-									<p>Malware Attacks</p>
-								</button>
-							</a>
+							<button id="malware" class="btn btn-default">
+								<text th:text="${malnum}" class="malnum" />
+								<p>Malware Attacks</p>
+							</button>
 						</div>
 						<div class="col-sm-2">
-							<a href="/web">
-								<button class="btn btn-secondary">
-									<text th:text="${webnum}" class="webnum" />
-									<p>Web Attacks</p>
-								</button>
-							</a>
+							<button id="web" class="btn btn-default">
+								<text th:text="${webnum}" class="webnum" />
+								<p>Web Attacks</p>
+							</button>
 						</div>
 						<div class="col-sm-2">
-							<a href="/sip">
-								<button class="btn btn-secondary">
-									<text th:text="${sipnum}" class="sipnum" />
-									<p>SIP Attacks</p>
-								</button>
-							</a>
+							<button id="sip" class="btn btn-default">
+								<text th:text="${sipnum}" class="sipnum" />
+								<p>SIP Attacks</p>
+							</button>
 						</div>
 						<div class="col-sm-2">
-							<a href="/ssh"><button class="btn btn-secondary">
-									<text th:text="${sshnum}" class="sshnum" />
-									<p>SSH Attacks</p>
-								</button> </a>
+							<button id="ssh" class="btn btn-default">
+								<text th:text="${sshnum}" class="sshnum" />
+								<p>SSH Attacks</p>
+							</button>
 						</div>
 						<div class="col-sm-2">
-							<a href="/db"><button class="btn btn-secondary">
-									<text th:text="${dbnum}" class="dbnum" />
-									<p>DB Attacks</p>
-								</button> </a>
+							<button id="db" class="btn btn-default">
+								<text th:text="${dbnum}" class="dbnum" />
+								<p>DB Attacks</p>
+							</button>
 						</div>
+
+						<script type="text/javascript" th:src="@{/js/filterReq.js}"
+							src="../../js/filterReq.js"></script>
+
 					</div>
 				</div>
 			</div>
@@ -391,6 +388,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="countrycode" style="display: none"></div>
 
 			<!-- ============================= -->

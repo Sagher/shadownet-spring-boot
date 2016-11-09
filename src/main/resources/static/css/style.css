@@ -17,8 +17,9 @@ table {
 	counter-increment: tableCount;
 }
 
-.btn {
+#probing, #malware, #web, #ssh, #sip, #db {
 	height: 50px;
 	width: 120px;
+	background-color: #8acc9b;
 	
 }
