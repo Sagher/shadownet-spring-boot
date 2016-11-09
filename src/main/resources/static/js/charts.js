@@ -1,11 +1,3 @@
-// Load the Visualization API and the corechart package.
-google.charts.load('current', {
-	'packages' : [ 'corechart' ]
-});
-
-// Set a callback to run when the Google Visualization API is loaded.
-google.charts.setOnLoadCallback(drawChart);
-
 var pronum = parseInt($('#pcount').find('.pronum').text());
 var malnum = parseInt($('#pcount').find('.malnum').text());
 var webnum = parseInt($('#pcount').find('.webnum').text());
@@ -13,38 +5,55 @@ var sipnum = parseInt($('#pcount').find('.sipnum').text());
 var sshnum = parseInt($('#pcount').find('.sshnum').text());
 var dbnum = parseInt($('#pcount').find('.dbnum').text());
 
-function drawChart() {
+var randomColorFactor = function() {
+	return Math.round(Math.random() * 255);
+};
+var randomColor = function(opacity) {
+	return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ','
+			+ randomColorFactor() + ',' + (opacity || '.7') + ')';
+};
 
-	// Create the data table.
-	var data = new google.visualization.DataTable();
-	data.addColumn('string', 'Topping');
-	data.addColumn('number', 'Slices');
-	data.addRows([ [ 'PROBING', pronum ], [ 'WEB', webnum ],
-			[ 'MALWARE', malnum ], [ 'SIP', sipnum ], [ 'SSH', sshnum ],
-			[ 'DB', dbnum ] ]);
+var graphData = {
+	labels : [ "PROBING", "MALWARE", "WEB", "SIP", "SSH", "DB" ],
+	datasets : [ {
+		data : [ pronum, malnum, webnum, sipnum, sshnum, dbnum ],
+		backgroundColor : [ randomColor(0.7), randomColor(0.7),
+				randomColor(0.7), randomColor(0.7), randomColor(0.7),
+				randomColor(0.7) ]
+	} ]
 
-	// Set chart options
-	var options = {
-		'title' : 'Pie Chart',
-		is3D : true,
-		'width' : 380,
-		'height' : '100%'
-	};
+};
 
-	var options2 = {
-		'title' : 'Bar Chart',
-		is3D : true,
-		'width' : 380,
-		'height' : '100%'
-	};
+window.onload = function() {
+	var pie = document.getElementById("pie");
+	window.myPie = new Chart(pie, {
+		type : 'doughnut',
+		data : graphData,
+		options : {
+			responsive : true,
+			legend : {
+				position : 'top',
+			},
+			title : {
+				display : false,
+				text : 'Pie Chart'
+			}
+		}
+	});
+	var bar = document.getElementById("bar");
+	window.myBar = new Chart(bar, {
+		type : 'bar',
+		data : graphData,
+		options : {
+			responsive : true,
+			legend : {
+				display : false
+			},
+			title : {
+				display : false,
+				text:'Bar Chart'
+			}
+		}
+	});
 
-	// Instantiate and draw our chart, passing in some options.
-	var chart = new google.visualization.PieChart(document
-			.getElementById('pie'));
-	chart.draw(data, options);
-
-	var chart1 = new google.visualization.BarChart(document
-			.getElementById('bar'));
-	chart1.draw(data, options2);
-
-}
+};
