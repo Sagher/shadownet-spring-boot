@@ -20,7 +20,7 @@ function refreshMessages(messages) {
 						if (message.countryCode != null) {
 							$(".media-list")
 									.append(
-											'<div class="col-sm-3 animated" style="padding-top:10px;"><div style="height:63px; width:4px;background:#d17d00;float:left"></div>&nbsp;'
+											'<div class="col-sm-3"><div class="bar-live"></div><text>'
 													+ message.time
 													+ '<br/>&nbsp;Source: <b>'
 													+ message.sourceIP
@@ -30,11 +30,11 @@ function refreshMessages(messages) {
 													+ message.location
 													+ '&nbsp;, '
 													+ message.countryCode
-													+ '</b> </div>');
+													+ '</b></text></div>');
 
 							if (count > 4) {
 								$(".countrycode").html("");
-								count=1;
+								count = 1;
 							} else {
 								var html = "<div id='div" + count + "'>"
 										+ message.countryCode + "</div>";

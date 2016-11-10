@@ -5,21 +5,12 @@ var sipnum = parseInt($('#pcount').find('.sipnum').text());
 var sshnum = parseInt($('#pcount').find('.sshnum').text());
 var dbnum = parseInt($('#pcount').find('.dbnum').text());
 
-var randomColorFactor = function() {
-	return Math.round(Math.random() * 255);
-};
-var randomColor = function(opacity) {
-	return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ','
-			+ randomColorFactor() + ',' + (opacity || '.7') + ')';
-};
-
 var graphData = {
 	labels : [ "PROBING", "MALWARE", "WEB", "SIP", "SSH", "DB" ],
 	datasets : [ {
 		data : [ pronum, malnum, webnum, sipnum, sshnum, dbnum ],
-		backgroundColor : [ randomColor(0.7), randomColor(0.7),
-				randomColor(0.7), randomColor(0.7), randomColor(0.7),
-				randomColor(0.7) ]
+		backgroundColor : [ '#B2912F', '#F15854', '#FAA43A', '#DECF3F',
+				'#5DA5DA', '#B276B2', ]
 	} ]
 
 };
@@ -31,6 +22,7 @@ window.onload = function() {
 		data : graphData,
 		options : {
 			responsive : true,
+			height : '300px',
 			legend : {
 				position : 'top',
 			},
@@ -51,7 +43,7 @@ window.onload = function() {
 			},
 			title : {
 				display : false,
-				text:'Bar Chart'
+				text : 'Bar Chart'
 			}
 		}
 	});

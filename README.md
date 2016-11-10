@@ -14,12 +14,11 @@ Default credentials:
 
 ---
 #### Home
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20139262/061bafc6-a6a7-11e6-9c6a-4250d44d0266.jpg)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20166600/bc42a0c6-a737-11e6-97f8-3fc78f97475b.jpg)
 
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20005800/0a6b8dca-a2b6-11e6-97af-bd017b4a3408.png)
 
 #### Graphs 
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20139263/061c5c50-a6a7-11e6-9315-ecc4c767601b.jpg)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20166601/bc71c126-a737-11e6-8cbd-82aafb023508.jpg)
 
 
 #### Malicios Url Requests

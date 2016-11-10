@@ -2,22 +2,22 @@ var arcs = new Datamap({
 	element : document.getElementById("map"),
 	scope : 'world',
 	fills : {
-		defaultFill : '#ABDDA4'
+		defaultFill : '#1c1b1b'
 	},
 	geographyConfig : {
 		hideAntarctica : true,
 		borderWidth : 1,
 		borderOpacity : 1,
-		borderColor : '#FDFDFD',
+		borderColor : '#68becc',
 		popupOnHover : true,
-		highlightOnHover : true,
+		highlightOnHover : false,
 		highlightFillColor : '',
 		highlightBorderColor : '',
 		highlightBorderWidth : 1,
 		highlightBorderOpacity : 1
 	},
 	arcConfig : {
-		strokeColor : 'red',
+		strokeColor : 'orange',
 		strokeWidth : 2,
 		arcSharpness : 1,
 		animationSpeed : 600

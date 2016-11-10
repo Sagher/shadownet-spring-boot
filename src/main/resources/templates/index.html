@@ -83,7 +83,7 @@
 <script type="text/javascript" th:src="@{/assets/js/apps.min.js}"
 	src="../../assets/js/apps.min.js"></script>
 
-<link rel="stylesheet" th:href="@{/css/style.css}"
+<link rel="stylesheet" th:href="@{/css/index.css}"
 	href="../../css/style.css" />
 
 <script type="text/javascript" th:src="@{/js/app.js}"
@@ -92,7 +92,7 @@
 </head>
 
 <!-- ================== BEGIN BODY ================== -->
-<body onLoad="startTime()">
+<body>
 	<!-- begin #page-loader -->
 	<div id="page-loader" class="fade in">
 		<span class="spinner"></span>
@@ -232,67 +232,36 @@
 		<!-- ===============begin #content===================== -->
 		<div id="content" class="content">
 
-			<div class="dropdown pull-right">
-				<button class="btn-sm btn-primary dropdown-toggle" type="button"
-					data-toggle="dropdown">
-					Filter <span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li><a href="/?filter=hour">Last Hour</a></li>
-					<li><a href="/?filter=day">Last Day</a></li>
-					<li><a href="/">All</a></li>
-				</ul>
-			</div>
-
-			<!-- begin page-header -->
-			<h1 class="page-header">
-				Dashboard <small>Real-time Attacks frequency</small>
-			</h1>
-
 			<!--  =========================Panel 1============================== -->
 
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
-						<b id="time"></b> <a href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-warning"
-							data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
-							href="javascript:;"
-							class="btn btn-xs btn-icon btn-circle btn-danger"
-							data-click="panel-remove"><i class="fa fa-times"></i></a>
+						<div class="dropdown pull-right">
+							<button class="btn-xs btn-primary dropdown-toggle" type="button"
+								data-toggle="dropdown">
+								Filter <span class="caret"></span>
+							</button>
+							<ul class="dropdown-menu">
+								<li><a href="/?filter=hour">Last Hour</a></li>
+								<li><a href="/?filter=day">Last Day</a></li>
+								<li><a href="/">All</a></li>
+							</ul>
+						</div>
 					</div>
-					<script type="text/javascript" th:src="@{/js/time.js}"
-						src="../../js/time.js"></script>
-
 					<h4 class="panel-title">DashBoard</h4>
-				</div>
-				<div class="panel-body"
-					style="max-height: 100px; background-color: #f9f9f9">
 
+				</div>
+				<div class="panel-body panel-live" style="height:90px">
 					<div id="jscroll" style="width: 100%;">
 						<div class="media-list row"></div>
-
-						<script>
-							$(function() {
-								$('#jscroll').slimScroll({
-									height : '80px',
-									position : 'right',
-									railVisible : false,
-									alwaysVisible : false
-								});
-							});
-						</script>
 					</div>
 				</div>
 
-				<div class="panel-body" style="background-color: #f9f9f9">
-					<div id="map">
-						<script type="text/javascript" th:src="@{/js/map.js}"
-							src="../../js/map.js"></script>
-					</div>
+				<div class="panel-body panel-live">
+					<div id="map"></div>
 
 					<div id="pcount">
-
 						<div class="col-sm-2">
 							<button id="probing" class="btn btn-default">
 								<text th:text="${pronum}" class="pronum" />
@@ -329,29 +298,17 @@
 								<p>DB Attacks</p>
 							</button>
 						</div>
-
-						<script type="text/javascript" th:src="@{/js/filterReq.js}"
-							src="../../js/filterReq.js"></script>
-
 					</div>
 				</div>
 			</div>
 
-			<!-- =======================PANEL 2 =============== -->
+			<!-- ========== PANEL 2 =============== -->
 			<div class="col-sm-6">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
-						<div class="panel-heading-btn">
-							<a href="javascript:;"
-								class="btn btn-xs btn-icon btn-circle btn-warning"
-								data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
-								href="javascript:;"
-								class="btn btn-xs btn-icon btn-circle btn-danger"
-								data-click="panel-remove"><i class="fa fa-times"></i></a>
-						</div>
 						<h4 class="panel-title">Pie Chart</h4>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body graphs">
 						<div>
 							<canvas id="pie"></canvas>
 						</div>
@@ -363,31 +320,19 @@
 			<div class="col-sm-6">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
-						<div class="panel-heading-btn">
-							<a href="javascript:;"
-								class="btn btn-xs btn-icon btn-circle btn-warning"
-								data-click="panel-collapse"><i class="fa fa-minus"></i></a> <a
-								href="javascript:;"
-								class="btn btn-xs btn-icon btn-circle btn-danger"
-								data-click="panel-remove"><i class="fa fa-times"></i></a>
-						</div>
 						<h4 class="panel-title">Bar Chart</h4>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body graphs">
 						<div>
 							<canvas id="bar"></canvas>
 						</div>
-						<script type="text/javascript" th:src="@{/js/charts.js}"
-							src="../../js/charts.js"></script>
 					</div>
 				</div>
 			</div>
 
-			<div class="countrycode" style="display: none"></div>
-
 			<!-- ============================= -->
+			<div class="countrycode" style="display: none"></div>
 		</div>
-
 		<!-- end #content -->
 	</div>
 	<!-- ============================== -->
@@ -420,14 +365,31 @@
 		</div>
 	</div>
 
-
 	<!-- begin scroll to top btn -->
 	<a href="javascript:;"
 		class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
 		data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	<!-- end scroll to top btn -->
-	<!-- end page container -->
 
+
+	<!-- ============= Page level JS ================== -->
+
+	<script>
+		$(function() {
+			$('#jscroll').slimScroll({
+				height : '80px',
+				position : 'right',
+				railVisible : false,
+				alwaysVisible : false
+			});
+		});
+	</script>
+	<script type="text/javascript" th:src="@{/js/map.js}"
+		src="../../js/map.js"></script>
+	<script type="text/javascript" th:src="@{/js/filterReq.js}"
+		src="../../js/filterReq.js"></script>
+	<script type="text/javascript" th:src="@{/js/charts.js}"
+		src="../../js/charts.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
