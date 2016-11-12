@@ -215,8 +215,30 @@
 
 			<div class="panel panel-inverse">
 
-				<div class="panel-body"></div>
-				<div class="container"></div>
+				<div class="panel-body">
+					<div class="col-sm-6">
+						<form class="form-horizontal" action="/" method="POST">
+							<fieldset>
+								<legend>Block an IP</legend>
+								<div class="form-group">
+									<label class="col-sm-6 control-label">IP address to
+										blocked</label>
+									<div class="col-sm-6">
+										<input id="ip" type="text" class="form-control"
+											placeholder="123.456.789.123" />
+									</div>
+								</div>
+
+								<br />
+								<div class="col-sm-6"></div>
+								<div class="form-group col-sm-6 pull-right">
+									<button id="block" type="submit"
+										class="btn btn-danger pull-right">BLOCK</button>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
 			</div>
 
 			<!-- ============================= -->
@@ -226,12 +248,13 @@
 	<!-- ============================== -->
 	<!-- end #content -->
 
+	<script type="text/javascript" th:src="@{/js/setting.js}"
+		src="../../js/setting.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
 	</script>
-
 </body>
 </html>
 

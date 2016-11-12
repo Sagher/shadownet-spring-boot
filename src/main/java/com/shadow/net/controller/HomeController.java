@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.shadow.net.config.SpringMongoConfig;
 import com.shadow.net.model.Packet;
 import com.shadow.net.repository.PacketRepository;
+import com.shadow.net.utils.countByCountry;
 
 @Controller
 public class HomeController {
@@ -91,6 +92,10 @@ public class HomeController {
 			model.addAttribute("dbnum", dbnum);
 
 		}
+
+		java.util.List<Packet> packets = packetRepo.findAll();
+
+		model.addAttribute("ips", countByCountry.countByCountries(packets));
 
 		return "index";
 	}
