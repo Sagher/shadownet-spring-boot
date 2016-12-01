@@ -123,7 +123,7 @@
 					<li class="active"><a href="/">DashBoard</a></li>
 					<li><a href="/urls">Request Urls</a></li>
 					<li><a href="/hashes">Hashes</a></li>
-					<li><a href="/setting">Settings</a></li>
+					<li><a href="/blocklist">Block List</a></li>
 				</ul>
 
 
@@ -138,7 +138,7 @@
 						<ul class="dropdown-menu animated fadeInLeft">
 							<li class="arrow"></li>
 							<li><a href="/">Dashboard</a></li>
-							<li><a href="/setting">Setting</a></li>
+							<li><a href="/blocklist">Block List</a></li>
 							<li data-toggle="modal" data-target=".bd-example-modal-lg"><a
 								href="javascript:;">Clear Database</a></li>
 							<li class="divider"></li>
@@ -245,6 +245,7 @@
 							<ul class="dropdown-menu">
 								<li><a href="/?filter=hour">Last Hour</a></li>
 								<li><a href="/?filter=day">Last Day</a></li>
+								<li><a href="/?filter=week">Last Week</a></li>
 								<li><a href="/">All</a></li>
 							</ul>
 						</div>
@@ -331,12 +332,12 @@
 			</div>
 
 			<!-- =========== PANEL 4 =================== -->
-			<div class="col-sm-4">
+			<div class="col-sm-6">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
 						<h4 class="panel-title">Top 10 Countries</h4>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body graphs">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -346,7 +347,7 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="packet : ${ips}">
+								<tr th:each="packet : ${top10ips}">
 									<td class="counterCell"></td>
 									<td th:text="${packet.Key}"></td>
 									<td th:text="${packet.Value}"></td>
@@ -354,6 +355,34 @@
 							</tbody>
 						</table>
 					</div>
+				</div>
+			</div>
+
+			<!-- =========== PANEL 5 =================== -->
+			<div class="col-sm-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<h4 class="panel-title">Top 10 Urls</h4>
+					</div>
+					<div class="panel-body graphs">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Url</th>
+									<th>Count</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="packet : ${top10urls}">
+									<td class="counterCell"></td>
+									<td th:text="${packet.Key}"></td>
+									<td th:text="${packet.Value}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
 				</div>
 			</div>
 			<!-- ============================= -->
@@ -409,7 +438,8 @@
 				alwaysVisible : false
 			});
 		});
-	</script>
+	
+</script>
 	<script type="text/javascript" th:src="@{/js/map.js}"
 		src="../../js/map.js"></script>
 	<script type="text/javascript" th:src="@{/js/filterReq.js}"
@@ -421,6 +451,7 @@
 			App.init();
 		});
 	</script>
+
 
 </body>
 </html>

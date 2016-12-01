@@ -3,6 +3,7 @@ package com.shadow.net.controller;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.shadow.net.config.SpringMongoConfig;
 import com.shadow.net.model.Packet;
 import com.shadow.net.repository.PacketRepository;
-import com.shadow.net.utils.countByCountry;
+import com.shadow.net.utils.CountTopTen;
 
 @Controller
 public class HomeController {
@@ -91,11 +92,35 @@ public class HomeController {
 			long dbnum = filterContent(lastDay, "DB");
 			model.addAttribute("dbnum", dbnum);
 
+		} else if (filter.equals("week")) {
+
+			Date today = new Date();
+			String lastDay = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24 * 7)));
+
+			long pronum = filterContent(lastDay, "PROBING");
+			model.addAttribute("pronum", pronum);
+
+			long malnum = filterContent(lastDay, "MALWARE");
+			model.addAttribute("malnum", malnum);
+
+			long webnum = filterContent(lastDay, "WEB");
+			model.addAttribute("webnum", webnum);
+
+			long sipnum = filterContent(lastDay, "SIP");
+			model.addAttribute("sipnum", sipnum);
+
+			long sshnum = filterContent(lastDay, "SSH");
+			model.addAttribute("sshnum", sshnum);
+
+			long dbnum = filterContent(lastDay, "DB");
+			model.addAttribute("dbnum", dbnum);
+
 		}
 
 		java.util.List<Packet> packets = packetRepo.findAll();
 
-		model.addAttribute("ips", countByCountry.countByCountries(packets));
+		model.addAttribute("top10ips", CountTopTen.countByCountries(packets));
+		model.addAttribute("top10urls", CountTopTen.countByUrls(packets));
 
 		return "index";
 	}
@@ -108,5 +133,4 @@ public class HomeController {
 		long count = mongoOperation.count(query, Packet.class);
 		return count;
 	}
-
 }

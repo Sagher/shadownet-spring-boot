@@ -5,6 +5,7 @@ var sipnum = parseInt($('#pcount').find('.sipnum').text());
 var sshnum = parseInt($('#pcount').find('.sshnum').text());
 var dbnum = parseInt($('#pcount').find('.dbnum').text());
 
+
 var graphData = {
 	labels : [ "PROBING", "MALWARE", "WEB", "SIP", "SSH", "DB" ],
 	datasets : [ {
@@ -47,5 +48,4 @@ window.onload = function() {
 			}
 		}
 	});
-
 };
