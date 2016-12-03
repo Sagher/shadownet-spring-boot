@@ -346,7 +346,7 @@
 					}
 					
 					for(var index=0; index < 10; index++){
-						var html = "<tr><td class='ukey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
+						var html = "<tr><td class='ikey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
 						$("#top10ips").append(html);
 						count++;
 						}
@@ -371,16 +371,16 @@
 				</div>
 			</div>
 			<script>
-				var url1 = $('#top10ips').find('#ukey1').text();
-				var url2 = $('#top10ips').find('#ukey2').text();
-				var url3 = $('#top10ips').find('#ukey3').text();
-				var url4 = $('#top10ips').find('#ukey4').text();
-				var url5 = $('#top10ips').find('#ukey5').text();
-				var url6 = $('#top10ips').find('#ukey6').text();
-				var url7 = $('#top10ips').find('#ukey7').text();
-				var url8 = $('#top10ips').find('#ukey8').text();
-				var url9 = $('#top10ips').find('#ukey9').text();
-				var url10 = $('#top10ips').find('#ukey10').text();
+				var ip1 = $('#top10ips').find('#ikey1').text();
+				var ip2 = $('#top10ips').find('#ikey2').text();
+				var ip3 = $('#top10ips').find('#ikey3').text();
+				var ip4 = $('#top10ips').find('#ikey4').text();
+				var ip5 = $('#top10ips').find('#ikey5').text();
+				var ip6 = $('#top10ips').find('#ikey6').text();
+				var ip7 = $('#top10ips').find('#ikey7').text();
+				var ip8 = $('#top10ips').find('#ikey8').text();
+				var ip9 = $('#top10ips').find('#ikey9').text();
+				var ip10 = $('#top10ips').find('#ikey10').text();
 
 				var val1 = parseInt($('#top10ips').find('.value1').text());
 				var val2 = parseInt($('#top10ips').find('.value2').text());
@@ -395,9 +395,9 @@
 
 				
 				var graphData = {
-						labels : [ url1,url2,url3,url4,url5,url6,url7,url8,url9,url10 ],
+						labels : [ ip1, ip2, ip3, ip4, ip5, ip6, ip7, ip8, ip9, ip10 ],
 						datasets : [ {
-							data : [ val1, val2, val3 ,val4,val5,val6,val7,val8,val9,val10 ],
+							data : [ val1, val2, val3, val4, val5, val6, val7, val8, val9, val10 ],
 							backgroundColor : [ '#FAA43A', '#DECF3F',
 												'#5DA5DA', '#B276B2', '#DECF3F', '#FAA43A', '#5DA5DA', '#B276B2', '#000333' ,'#FAA43A' ]
 						} ]
