@@ -17,11 +17,12 @@ Default credentials:
 ![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20166600/bc42a0c6-a737-11e6-97f8-3fc78f97475b.jpg)
 
 
-#### Graphs 
-![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20166601/bc71c126-a737-11e6-8cbd-82aafb023508.jpg)
+#### Statistics 
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20857299/dc334f48-b948-11e6-8057-eb2a21e5c857.jpg)
+![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/20857301/dc7816c8-b948-11e6-98ed-4bf56981201e.jpg)
 
 
-#### Malicios Url Requests
+#### Malicious Url Requests
 ![ScreenShot](https://cloud.githubusercontent.com/assets/20042101/19225472/bc237168-8eb6-11e6-9462-d63f55cf8e4b.png)
 
 ####Malicious Responses
