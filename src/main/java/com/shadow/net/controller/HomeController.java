@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.shadow.net.config.SpringMongoConfig;
 import com.shadow.net.model.Packet;
 import com.shadow.net.repository.PacketRepository;
-import com.shadow.net.utils.CountTopTen;
 
 @Controller
 public class HomeController {
@@ -95,32 +94,27 @@ public class HomeController {
 		} else if (filter.equals("week")) {
 
 			Date today = new Date();
-			String lastDay = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24 * 7)));
+			String lastWeek = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24 * 7)));
 
-			long pronum = filterContent(lastDay, "PROBING");
+			long pronum = filterContent(lastWeek, "PROBING");
 			model.addAttribute("pronum", pronum);
 
-			long malnum = filterContent(lastDay, "MALWARE");
+			long malnum = filterContent(lastWeek, "MALWARE");
 			model.addAttribute("malnum", malnum);
 
-			long webnum = filterContent(lastDay, "WEB");
+			long webnum = filterContent(lastWeek, "WEB");
 			model.addAttribute("webnum", webnum);
 
-			long sipnum = filterContent(lastDay, "SIP");
+			long sipnum = filterContent(lastWeek, "SIP");
 			model.addAttribute("sipnum", sipnum);
 
-			long sshnum = filterContent(lastDay, "SSH");
+			long sshnum = filterContent(lastWeek, "SSH");
 			model.addAttribute("sshnum", sshnum);
 
-			long dbnum = filterContent(lastDay, "DB");
+			long dbnum = filterContent(lastWeek, "DB");
 			model.addAttribute("dbnum", dbnum);
 
 		}
-
-		java.util.List<Packet> packets = packetRepo.findAll();
-
-		model.addAttribute("top10ips", CountTopTen.countByCountries(packets));
-		model.addAttribute("top10urls", CountTopTen.countByUrls(packets));
 
 		return "index";
 	}

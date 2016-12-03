@@ -52,15 +52,19 @@ public class CountTopTen {
 		return sortedMap;
 	}
 
-	public static Map<String, Integer> countByUrls(List<Packet> packets) {
+	public static Map<String, Integer> countByIps(List<Packet> packets) {
 
 		Map<String, Integer> map = new HashMap<String, Integer>();
 
 		ArrayList<String> location = new ArrayList<String>();
 
 		for (int i = 0; i < packets.size(); i++) {
-			if (packets.get(i).requestUrl != null) {
-				location.add(packets.get(i).requestUrl);
+			if (packets.get(i).direction.equals("INCOMING")) {
+				location.add(packets.get(i).sourceIP);
+			}
+			else if(packets.get(i).direction.equals("OUTGOING")){
+				location.add(packets.get(i).destinationIP);
+
 			}
 		}
 		for (String temp : location) {

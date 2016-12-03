@@ -6,7 +6,7 @@
 
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Shadow-NET :: Dashboard</title>
+<title>Shadow-NET :: Statistics</title>
 
 
 <!-- ========================================================== -->
@@ -40,12 +40,6 @@
 	th:href="@{/assets/css/emojify-emoticons.min.css}"
 	href="../../assets/css/emojify-emoticons.min.css" />
 
-<script type="text/javascript" th:src="@{/assets/js/sockjs.min.js}"
-	src="../../assets/js/sockjs.min.js"></script>
-
-<script type="text/javascript" th:src="@{/assets/js/stomp.min.js}"
-	src="../../assets/js/stomp.min.js"></script>
-
 <script type="text/javascript" th:src="@{/assets/js/emojify.min.js}"
 	src="../../assets/js/emojify.min.js"></script>
 
@@ -55,18 +49,15 @@
 <script type="text/javascript" th:src="@{/assets/js/topojson.v1.min.js}"
 	src="../../assets/js/topojson.v1.min.js"></script>
 
-<script type="text/javascript" th:src="@{/assets/js/Chart.js}"
-	src="../../assets/js/Chart.js"></script>
 
 <link rel="stylesheet" th:href="@{/assets/css/bootstrap.min.css}"
 	href="../../assets/css/bootstrap.min.css" />
 
+<script type="text/javascript" th:src="@{/assets/js/Chart.js}"
+	src="../../assets/js/Chart.js"></script>
+
 <script type="text/javascript" th:src="@{/assets/js/bootstrap.min.js}"
 	src="../../assets/js/bootstrap.min.js"></script>
-
-<script type="text/javascript"
-	th:src="@{/assets/js/datamaps.world.min.js}"
-	src="../../assets/js/datamaps.world.min.js"></script>
 
 <link rel="stylesheet" th:href="@{/assets/css/animate.min.css}"
 	href="../../assets/css/animate.min.css" />
@@ -83,11 +74,7 @@
 <script type="text/javascript" th:src="@{/assets/js/apps.min.js}"
 	src="../../assets/js/apps.min.js"></script>
 
-<link rel="stylesheet" th:href="@{/css/index.css}"
-	href="../../css/style.css" />
 
-<script type="text/javascript" th:src="@{/js/app.js}"
-	src="../../js/app.js"></script>
 
 </head>
 
@@ -98,7 +85,6 @@
 		<span class="spinner"></span>
 	</div>
 	<!-- end #page-loader -->
-
 
 	<!-- begin #page-container -->
 	<div id="page-container"
@@ -120,12 +106,11 @@
 				</div>
 
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="/">DashBoard</a></li>
+					<li><a href="/">DashBoard</a></li>
 					<li><a href="/urls">Request Urls</a></li>
 					<li><a href="/hashes">Hashes</a></li>
 					<li><a href="/blocklist">Block List</a></li>
 				</ul>
-
 
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
@@ -164,8 +149,7 @@
 				<ul class="nav">
 					<li class="nav-profile">
 						<div class="image">
-							<a href="javascript:;"><img src="assets/img/user-7.jpg"
-								alt="" /></a>
+							<a href="#"><img src="assets/img/user-7.jpg" alt="" /></a>
 						</div>
 						<div class="info">
 							<text th:inline="text">
@@ -178,11 +162,9 @@
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
-					<li class="active"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-laptop"></i> <span>
-								Dashboard </span>
+					<li><a href="#"> <b class="caret pull-right"></b> <i
+							class="fa fa-laptop"></i> <span> Dashboard </span>
 					</a></li>
-
 					<li class="has-sub"><a href="#"><b
 							class="caret pull-right"></b><i class="fa fa-list-alt"></i><span>MaliciousIPs</span></a>
 						<ul class="sub-menu">
@@ -193,29 +175,25 @@
 							<li><a href="/ssh">SSH</a></li>
 							<li><a href="/db">DB</a></li>
 						</ul></li>
-
 					<li class="has-sub"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-th"></i> <span>Malicious
 								Requests</span></a>
 						<ul class="sub-menu">
 							<li><a href="/urls">Request Urls</a></li>
 						</ul></li>
-
 					<li class="has-sub"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-suitcase"></i> <span>Malicious
 								Responses</span></a>
 						<ul class="sub-menu">
 							<li><a href="/hashes">Matched Md5 Hashes</a></li>
 						</ul></li>
-
-					<li class="has-sub"><a href="#"> <b
+					<li class="has-sub active"><a href="#"> <b
 							class="caret pull-right"></b> <i class="fa fa-area-chart"></i> <span>
 								Statistics </span></a>
 						<ul class="sub-menu">
-							<li><a href="/statistics">Top 10 Countries</a></li>
-							<li><a href="/statistics#top10ips">Top 10 IPs</a></li>
+							<li><a href="#top10countries">Top 10 Countries</a></li>
+							<li><a href="#top10ips">Top 10 IPs</a></li>
 						</ul></li>
-
 
 					<!-- begin sidebar minify button -->
 					<li><a href="javascript:;" class="sidebar-minify-btn"
@@ -232,165 +210,228 @@
 		<!-- ===============begin #content===================== -->
 		<div id="content" class="content">
 
-			<!--  =========================Panel 1============================== -->
-
-			<div class="panel panel-inverse">
-				<div class="panel-heading">
-					<div class="panel-heading-btn">
-						<div class="dropdown pull-right">
-							<button class="btn-xs btn-primary dropdown-toggle" type="button"
-								data-toggle="dropdown">
-								Filter <span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu">
-								<li><a href="/?filter=hour">Last Hour</a></li>
-								<li><a href="/?filter=day">Last Day</a></li>
-								<li><a href="/?filter=week">Last Week</a></li>
-								<li><a href="/">All</a></li>
-							</ul>
-						</div>
+			<!-- =========== PANEL 1 =================== -->
+			<div class="col-sm-4">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<h4 class="panel-title">Top 10 Countries</h4>
 					</div>
-					<h4 class="panel-title">DashBoard</h4>
+					<div class="panel-body graphs">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>Country</th>
+									<th>Malicious Packets</th>
+								</tr>
+							</thead>
+							<tbody id="top10countries">
 
-				</div>
-				<div class="panel-body panel-live" style="height: 90px">
-					<div id="jscroll" style="width: 100%;">
-						<div class="media-list row"></div>
+							</tbody>
+						</table>
 					</div>
-				</div>
+					<script th:inline="javascript">
+					/*<![CDATA[*/
+					
+					var country = [[${top10countries}]];
+					var count=1;
 
-				<div class="panel-body panel-live">
-					<div id="map"></div>
+					var countryArray = [];
+					for (var key in country){
+						countryArray.push([key, country[key]]);
+					}
+					
+					for(var index=0; index < 11; index++){
+						var html = "<tr><td>" + count + "</td><td id='ckey" + count + "'>" + countryArray[index][0] + "</td><td class='value" + count + "'>" + countryArray[index][1] + "</td></tr>";
+						$("#top10countries").append(html);
+						count++;
+						}
+					/*]]>*/
+					</script>
 
-					<div id="pcount">
-						<div class="col-sm-2">
-							<button id="probing" class="btn btn-default">
-								<text th:text="${pronum}" class="pronum" />
-								<p>Probing Attacks</p>
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button id="malware" class="btn btn-default">
-								<text th:text="${malnum}" class="malnum" />
-								<p>Malware Attacks</p>
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button id="web" class="btn btn-default">
-								<text th:text="${webnum}" class="webnum" />
-								<p>Web Attacks</p>
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button id="sip" class="btn btn-default">
-								<text th:text="${sipnum}" class="sipnum" />
-								<p>SIP Attacks</p>
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button id="ssh" class="btn btn-default">
-								<text th:text="${sshnum}" class="sshnum" />
-								<p>SSH Attacks</p>
-							</button>
-						</div>
-						<div class="col-sm-2">
-							<button id="db" class="btn btn-default">
-								<text th:text="${dbnum}" class="dbnum" />
-								<p>DB Attacks</p>
-							</button>
-						</div>
-					</div>
 				</div>
 			</div>
 
 			<!-- ========== PANEL 2 =============== -->
-			<div class="col-sm-6">
+			<div class="col-sm-8">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
-						<h4 class="panel-title">Pie Chart</h4>
+						<h4 class="panel-title">Top Countries</h4>
 					</div>
 					<div class="panel-body graphs">
 						<div>
-							<canvas id="pie"></canvas>
+							<canvas id="cbar"></canvas>
 						</div>
 					</div>
+
+					<script>
+				var country1 = $('#top10countries').find('#ckey1').text();
+				var country2 = $('#top10countries').find('#ckey2').text();
+				var country3 = $('#top10countries').find('#ckey3').text();
+				var country4 = $('#top10countries').find('#ckey4').text();
+				var country5 = $('#top10countries').find('#ckey5').text();
+				var country6 = $('#top10countries').find('#ckey6').text();
+				var country7 = $('#top10countries').find('#ckey7').text();
+				var country8 = $('#top10countries').find('#ckey8').text();
+				var country9 = $('#top10countries').find('#ckey9').text();
+				var country10 = $('#top10countries').find('#ckey10').text();
+				
+				var val1 = parseInt($('#top10countries').find('.value1').text());
+				var val2 = parseInt($('#top10countries').find('.value2').text());
+				var val3 = parseInt($('#top10countries').find('.value3').text());
+				var val4 = parseInt($('#top10countries').find('.value4').text());
+				var val5 = parseInt($('#top10countries').find('.value5').text());
+				var val6 = parseInt($('#top10countries').find('.value6').text());
+				var val7 = parseInt($('#top10countries').find('.value7').text());
+				var val8 = parseInt($('#top10countries').find('.value8').text());
+				var val9 = parseInt($('#top10countries').find('.value9').text());
+				var val10 = parseInt($('#top10countries').find('.value10').text());
+
+				var graphData = {
+						labels : [ country1,country2,country3,country4, country5,country6,country7,country8,country9,country10],
+						datasets : [ {
+							data : [ val1, val2, val3 ,val4,val5,val6,val7,val8,val9,val10 ],
+							backgroundColor : [ '#FAA43A', '#DECF3F',
+									'#5DA5DA', '#B276B2', '#DECF3F', '#FAA43A', '#5DA5DA', '#B276B2', '#000333' ,'#FAA43A' ]
+						} ]
+
+					};
+				var bar = document.getElementById("cbar");
+						window.myBar = new Chart(bar, {
+							type : 'bar',
+							data : graphData,
+							options : {
+								responsive : true,
+								legend : {
+									display : false
+								},
+								title : {
+									display : false,
+									text : 'Bar Chart'
+								}
+							}
+						});
+				
+			</script>
 				</div>
 			</div>
 
 			<!-- =========== PANEL 3 =================== -->
-			<div class="col-sm-6">
-				<div class="panel panel-inverse">
-					<div class="panel-heading">
-						<h4 class="panel-title">Bar Chart</h4>
+			<div class="col-sm-12">
+				<div class="col-sm-4">
+					<div class="panel panel-inverse">
+						<div class="panel-heading">
+							<h4 class="panel-title">Top 10 IPs`</h4>
+						</div>
+						<div class="panel-body graphs">
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th>IP</th>
+										<th>Count</th>
+									</tr>
+								</thead>
+								<tbody id="top10ips">
+								</tbody>
+							</table>
+						</div>
+						<script th:inline="javascript">
+					/*<![CDATA[*/	
+					var urls = [[${top10ips}]];
+					var count=1;
+
+					var urlsArray = [];
+					for (var key in urls){
+						urlsArray.push([key, urls[key]]);
+					}
+					
+					for(var index=0; index < 10; index++){
+						var html = "<tr><td class='ukey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
+						$("#top10ips").append(html);
+						count++;
+						}
+					/*]]>*/
+					</script>
+
 					</div>
-					<div class="panel-body graphs">
-						<div>
-							<canvas id="bar"></canvas>
+				</div>
+
+				<!-- =========== PANEL 4 =================== -->
+				<div class="col-sm-8">
+					<div class="panel panel-inverse">
+						<div class="panel-heading">
+							<h4 class="panel-title">Top 10 IPs</h4>
+						</div>
+						<div class="panel-body graphs">
+							<div>
+								<canvas id="ubar"></canvas>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			<script>
+				var url1 = $('#top10ips').find('#ukey1').text();
+				var url2 = $('#top10ips').find('#ukey2').text();
+				var url3 = $('#top10ips').find('#ukey3').text();
+				var url4 = $('#top10ips').find('#ukey4').text();
+				var url5 = $('#top10ips').find('#ukey5').text();
+				var url6 = $('#top10ips').find('#ukey6').text();
+				var url7 = $('#top10ips').find('#ukey7').text();
+				var url8 = $('#top10ips').find('#ukey8').text();
+				var url9 = $('#top10ips').find('#ukey9').text();
+				var url10 = $('#top10ips').find('#ukey10').text();
 
-			<!-- ============================= -->
-			<div class="countrycode" style="display: none"></div>
+				var val1 = parseInt($('#top10ips').find('.value1').text());
+				var val2 = parseInt($('#top10ips').find('.value2').text());
+				var val3 = parseInt($('#top10ips').find('.value3').text());
+				var val4 = parseInt($('#top10ips').find('.value4').text());
+				var val5 = parseInt($('#top10ips').find('.value5').text());
+				var val6 = parseInt($('#top10ips').find('.value6').text());
+				var val7 = parseInt($('#top10ips').find('.value7').text());
+				var val8 = parseInt($('#top10ips').find('.value8').text());
+				var val9 = parseInt($('#top10ips').find('.value9').text());
+				var val10 = parseInt($('#top10ips').find('.value10').text());
+
+				
+				var graphData = {
+						labels : [ url1,url2,url3,url4,url5,url6,url7,url8,url9,url10 ],
+						datasets : [ {
+							data : [ val1, val2, val3 ,val4,val5,val6,val7,val8,val9,val10 ],
+							backgroundColor : [ '#FAA43A', '#DECF3F',
+												'#5DA5DA', '#B276B2', '#DECF3F', '#FAA43A', '#5DA5DA', '#B276B2', '#000333' ,'#FAA43A' ]
+						} ]
+					};
+				
+				
+				var bar = document.getElementById("ubar");
+				window.myBar = new Chart(bar, {
+					type : 'bar',
+					data : graphData,
+					options : {
+						responsive : true,
+						legend : {
+							display : false
+						},
+						title : {
+							display : false,
+							text : 'Bar Chart'
+						}
+					}
+				});
+				
+			</script>
+
 		</div>
 		<!-- end #content -->
 	</div>
 	<!-- ============================== -->
-
-	<!-- CLEAR DB: MODAL -->
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Are you Sure?</h4>
-				</div>
-				<div class="modal-body">
-					<p>
-					<h5>This will erase all of the content stored in database.</h5>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">No</button>
-					<a href="/del"><button type="button" class="btn btn-danger"
-							data-dismiss="/del">Yes</button></a>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-	</div>
 
 	<!-- begin scroll to top btn -->
 	<a href="javascript:;"
 		class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
 		data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	<!-- end scroll to top btn -->
-
-
-	<!-- ============= Page level JS ================== -->
-
-	<script>
-		$(function() {
-			$('#jscroll').slimScroll({
-				height : '80px',
-				position : 'right',
-				railVisible : false,
-				alwaysVisible : false
-			});
-		});
-	</script>
-	<script type="text/javascript" th:src="@{/js/map.js}"
-		src="../../js/map.js"></script>
-	<script type="text/javascript" th:src="@{/js/filterReq.js}"
-		src="../../js/filterReq.js"></script>
-	<script type="text/javascript" th:src="@{/js/charts.js}"
-		src="../../js/charts.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
