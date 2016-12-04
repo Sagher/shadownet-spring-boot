@@ -160,21 +160,6 @@
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
 			<div data-scrollbar="true" data-height="100%">
-				<!-- begin sidebar user -->
-				<ul class="nav">
-					<li class="nav-profile">
-						<div class="image">
-							<a href="javascript:;"><img src="assets/img/user-7.jpg"
-								alt="" /></a>
-						</div>
-						<div class="info">
-							<text th:inline="text">
-							[[${#httpServletRequest.remoteUser}]]</text>
-							<small>Network Administrator</small>
-						</div>
-					</li>
-				</ul>
-				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
@@ -184,7 +169,7 @@
 					</a></li>
 
 					<li class="has-sub"><a href="#"><b
-							class="caret pull-right"></b><i class="fa fa-list-alt"></i><span>MaliciousIPs</span></a>
+							class="caret pull-right"></b><i class="fa fa-list"></i><span>MaliciousIPs</span></a>
 						<ul class="sub-menu">
 							<li><a href="/probing">PROBING</a></li>
 							<li><a href="/malware">MALWARE</a></li>
@@ -195,32 +180,27 @@
 						</ul></li>
 
 					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-th"></i> <span>Malicious
+							class="caret pull-right"></b> <i class="fa fa-link"></i> <span>Malicious
 								Requests</span></a>
 						<ul class="sub-menu">
 							<li><a href="/urls">Request Urls</a></li>
 						</ul></li>
 
 					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-suitcase"></i> <span>Malicious
+							class="caret pull-right"></b> <i class="fa fa-file-text"></i> <span>Malicious
 								Responses</span></a>
 						<ul class="sub-menu">
-							<li><a href="/hashes">Matched Md5 Hashes</a></li>
+							<li><a href="/hashes">Md5 Hashes</a></li>
 						</ul></li>
 
 					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-area-chart"></i> <span>
+							class="caret pull-right"></b> <i class="fa fa-bar-chart"></i> <span>
 								Statistics </span></a>
 						<ul class="sub-menu">
 							<li><a href="/statistics">Top 10 Countries</a></li>
 							<li><a href="/statistics#top10ips">Top 10 IPs</a></li>
 						</ul></li>
 
-
-					<!-- begin sidebar minify button -->
-					<li><a href="javascript:;" class="sidebar-minify-btn"
-						data-click="sidebar-minify"><i class="fa fa-angle-double-left"></i></a></li>
-					<!-- end sidebar minify button -->
 				</ul>
 				<!-- end sidebar nav -->
 			</div>

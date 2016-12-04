@@ -145,20 +145,6 @@
 		<div id="sidebar" class="sidebar">
 			<!-- begin sidebar scrollbar -->
 			<div data-scrollbar="true" data-height="100%">
-				<!-- begin sidebar user -->
-				<ul class="nav">
-					<li class="nav-profile">
-						<div class="image">
-							<a href="#"><img src="assets/img/user-7.jpg" alt="" /></a>
-						</div>
-						<div class="info">
-							<text th:inline="text">
-							[[${#httpServletRequest.remoteUser}]]</text>
-							<small>Network Administrator</small>
-						</div>
-					</li>
-				</ul>
-				<!-- end sidebar user -->
 				<!-- begin sidebar nav -->
 				<ul class="nav">
 					<li class="nav-header">Navigation</li>
@@ -166,7 +152,7 @@
 							class="fa fa-laptop"></i> <span> Dashboard </span>
 					</a></li>
 					<li class="has-sub"><a href="#"><b
-							class="caret pull-right"></b><i class="fa fa-list-alt"></i><span>MaliciousIPs</span></a>
+							class="caret pull-right"></b><i class="fa fa-list"></i><span>MaliciousIPs</span></a>
 						<ul class="sub-menu">
 							<li><a href="/probing">PROBING</a></li>
 							<li><a href="/malware">MALWARE</a></li>
@@ -176,19 +162,19 @@
 							<li><a href="/db">DB</a></li>
 						</ul></li>
 					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-th"></i> <span>Malicious
+							class="caret pull-right"></b> <i class="fa fa-link"></i> <span>Malicious
 								Requests</span></a>
 						<ul class="sub-menu">
 							<li><a href="/urls">Request Urls</a></li>
 						</ul></li>
 					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-suitcase"></i> <span>Malicious
+							class="caret pull-right"></b> <i class="fa fa-file-text"></i> <span>Malicious
 								Responses</span></a>
 						<ul class="sub-menu">
 							<li><a href="/hashes">Matched Md5 Hashes</a></li>
 						</ul></li>
 					<li class="has-sub active"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-area-chart"></i> <span>
+							class="caret pull-right"></b> <i class="fa fa-bar-chart"></i> <span>
 								Statistics </span></a>
 						<ul class="sub-menu">
 							<li><a href="#top10countries">Top 10 Countries</a></li>
@@ -305,8 +291,8 @@
 									display : false
 								},
 								title : {
-									display : false,
-									text : 'Bar Chart'
+									display : true,
+									text : 'Top 10 Countries'
 								}
 							}
 						});
@@ -320,7 +306,7 @@
 				<div class="col-sm-4">
 					<div class="panel panel-inverse">
 						<div class="panel-heading">
-							<h4 class="panel-title">Top 10 IPs`</h4>
+							<h4 class="panel-title">Top 10 IPs</h4>
 						</div>
 						<div class="panel-body graphs">
 							<table class="table table-hover">
@@ -345,7 +331,7 @@
 					}
 					
 					for(var index=0; index < 10; index++){
-						var html = "<tr><td class='ikey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
+						var html = "<tr><td id='ikey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
 						$("#top10ips").append(html);
 						count++;
 						}
@@ -412,8 +398,8 @@
 							display : false
 						},
 						title : {
-							display : false,
-							text : 'Bar Chart'
+							display : true,
+							text : 'Most Detected IPs'
 						}
 					}
 				});
