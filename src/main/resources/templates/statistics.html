@@ -197,12 +197,12 @@
 		<div id="content" class="content">
 
 			<!-- =========== PANEL 1 =================== -->
-			<div class="col-sm-4">
+			<div class="col-sm-12 col-md-6">
 				<div class="panel panel-inverse">
 					<div class="panel-heading">
 						<h4 class="panel-title">Top 10 Countries</h4>
 					</div>
-					<div class="panel-body graphs">
+					<div class="panel-body" style="display: none">
 						<table class="table table-hover">
 							<thead>
 								<tr>
@@ -212,16 +212,13 @@
 								</tr>
 							</thead>
 							<tbody id="top10countries">
-
 							</tbody>
 						</table>
 					</div>
 					<script th:inline="javascript">
 					/*<![CDATA[*/
-					
 					var country = [[${top10countries}]];
 					var count=1;
-
 					var countryArray = [];
 					for (var key in country){
 						countryArray.push([key, country[key]]);
@@ -235,176 +232,110 @@
 					/*]]>*/
 					</script>
 
-				</div>
-			</div>
-
-			<!-- ========== PANEL 2 =============== -->
-			<div class="col-sm-8">
-				<div class="panel panel-inverse">
-					<div class="panel-heading">
-						<h4 class="panel-title">Top Countries</h4>
-					</div>
-					<div class="panel-body graphs">
+					<div class="panel-body">
 						<div>
 							<canvas id="cbar"></canvas>
 						</div>
 					</div>
-
-					<script>
-				var country1 = $('#top10countries').find('#ckey1').text();
-				var country2 = $('#top10countries').find('#ckey2').text();
-				var country3 = $('#top10countries').find('#ckey3').text();
-				var country4 = $('#top10countries').find('#ckey4').text();
-				var country5 = $('#top10countries').find('#ckey5').text();
-				var country6 = $('#top10countries').find('#ckey6').text();
-				var country7 = $('#top10countries').find('#ckey7').text();
-				var country8 = $('#top10countries').find('#ckey8').text();
-				var country9 = $('#top10countries').find('#ckey9').text();
-				var country10 = $('#top10countries').find('#ckey10').text();
-				
-				var val1 = parseInt($('#top10countries').find('.value1').text());
-				var val2 = parseInt($('#top10countries').find('.value2').text());
-				var val3 = parseInt($('#top10countries').find('.value3').text());
-				var val4 = parseInt($('#top10countries').find('.value4').text());
-				var val5 = parseInt($('#top10countries').find('.value5').text());
-				var val6 = parseInt($('#top10countries').find('.value6').text());
-				var val7 = parseInt($('#top10countries').find('.value7').text());
-				var val8 = parseInt($('#top10countries').find('.value8').text());
-				var val9 = parseInt($('#top10countries').find('.value9').text());
-				var val10 = parseInt($('#top10countries').find('.value10').text());
-
-				var graphData = {
-						labels : [ country1,country2,country3,country4, country5,country6,country7,country8,country9,country10],
-						datasets : [ {
-							data : [ val1, val2, val3 ,val4,val5,val6,val7,val8,val9,val10 ],
-							backgroundColor : [ '#FAA43A', '#DECF3F', '#5DA5DA', '#B276B2', '#DECF3F', '#FAA43A', '#5DA5DA', '#B276B2', '#000333' ,'#FAA43A' ]
-						} ]
-
-					};
-				var bar = document.getElementById("cbar");
-						window.myBar = new Chart(bar, {
-							type : 'bar',
-							data : graphData,
-							options : {
-								responsive : true,
-								legend : {
-									display : false
-								},
-								title : {
-									display : true,
-									text : 'Top 10 Countries'
-								}
-							}
-						});
-				
-			</script>
 				</div>
 			</div>
 
-			<!-- =========== PANEL 3 =================== -->
-			<div class="col-sm-12">
-				<div class="col-sm-4">
-					<div class="panel panel-inverse">
-						<div class="panel-heading">
-							<h4 class="panel-title">Top 10 IPs</h4>
-						</div>
-						<div class="panel-body graphs">
-							<table class="table table-hover">
-								<thead>
-									<tr>
-										<th>IP</th>
-										<th>Count</th>
-									</tr>
-								</thead>
-								<tbody id="top10ips">
-								</tbody>
-							</table>
-						</div>
-						<script th:inline="javascript">
+			<!-- ========== PANEL 2 =============== -->
+
+			<div class="col-sm-12 col-md-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<h4 class="panel-title">Top 10 IPs</h4>
+					</div>
+					<div class="panel-body" style="display: none">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>IP</th>
+									<th>Count</th>
+								</tr>
+							</thead>
+							<tbody id="top10ips">
+							</tbody>
+						</table>
+					</div>
+					<script th:inline="javascript">
 					/*<![CDATA[*/	
-					var urls = [[${top10ips}]];
+					var ips = [[${top10ips}]];
 					var count=1;
 
-					var urlsArray = [];
-					for (var key in urls){
-						urlsArray.push([key, urls[key]]);
+					var ipsArray = [];
+					for (var key in ips){
+						ipsArray.push([key, ips[key]]);
 					}
 					
 					for(var index=0; index < 10; index++){
-						var html = "<tr><td id='ikey" + count + "'>" + urlsArray[index][0] + "</td><td class='value" + count + "'>" + urlsArray[index][1] + "</td></tr>";
+						var html = "<tr><td id='ikey" + count + "'>" + ipsArray[index][0] + "</td><td class='value" + count + "'>" + ipsArray[index][1] + "</td></tr>";
 						$("#top10ips").append(html);
 						count++;
 						}
 					/*]]>*/
 					</script>
 
-					</div>
-				</div>
-
-				<!-- =========== PANEL 4 =================== -->
-				<div class="col-sm-8">
-					<div class="panel panel-inverse">
-						<div class="panel-heading">
-							<h4 class="panel-title">Top 10 IPs</h4>
-						</div>
-						<div class="panel-body graphs">
-							<div>
-								<canvas id="ubar"></canvas>
-							</div>
+					<div class="panel-body">
+						<div>
+							<canvas id="ubar"></canvas>
 						</div>
 					</div>
 				</div>
 			</div>
-			<script>
-				var ip1 = $('#top10ips').find('#ikey1').text();
-				var ip2 = $('#top10ips').find('#ikey2').text();
-				var ip3 = $('#top10ips').find('#ikey3').text();
-				var ip4 = $('#top10ips').find('#ikey4').text();
-				var ip5 = $('#top10ips').find('#ikey5').text();
-				var ip6 = $('#top10ips').find('#ikey6').text();
-				var ip7 = $('#top10ips').find('#ikey7').text();
-				var ip8 = $('#top10ips').find('#ikey8').text();
-				var ip9 = $('#top10ips').find('#ikey9').text();
-				var ip10 = $('#top10ips').find('#ikey10').text();
 
-				var val1 = parseInt($('#top10ips').find('.value1').text());
-				var val2 = parseInt($('#top10ips').find('.value2').text());
-				var val3 = parseInt($('#top10ips').find('.value3').text());
-				var val4 = parseInt($('#top10ips').find('.value4').text());
-				var val5 = parseInt($('#top10ips').find('.value5').text());
-				var val6 = parseInt($('#top10ips').find('.value6').text());
-				var val7 = parseInt($('#top10ips').find('.value7').text());
-				var val8 = parseInt($('#top10ips').find('.value8').text());
-				var val9 = parseInt($('#top10ips').find('.value9').text());
-				var val10 = parseInt($('#top10ips').find('.value10').text());
+			<!-- =========== PANEL 3 =================== -->
+			<div class="col-sm-6 col-md-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<h4 class="panel-title">Top 10 Urls</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Url</th>
+									<th>Count</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="packet : ${top10urls}">
+									<td th:text="${packet.Key}"></td>
+									<td th:text="${packet.Value}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 
-				
-				var graphData = {
-						labels : [ ip1, ip2, ip3, ip4, ip5, ip6, ip7, ip8, ip9, ip10 ],
-						datasets : [ {
-							data : [ val1, val2, val3, val4, val5, val6, val7, val8, val9, val10 ],
-							backgroundColor : [ '#FAA43A', '#DECF3F', '#5DA5DA', '#B276B2', '#DECF3F', '#FAA43A', '#5DA5DA', '#B276B2', '#000333' ,'#FAA43A' ]
-						} ]
-					};
-				
-				
-				var bar = document.getElementById("ubar");
-				window.myBar = new Chart(bar, {
-					type : 'bar',
-					data : graphData,
-					options : {
-						responsive : true,
-						legend : {
-							display : false
-						},
-						title : {
-							display : true,
-							text : 'Most Detected IPs'
-						}
-					}
-				});
-				
-			</script>
+			<!-- =========== PANEL 4 =================== -->
+			<div class="col-sm-6 col-md-6">
+				<div class="panel panel-inverse">
+					<div class="panel-heading">
+						<h4 class="panel-title">Top 10 Hashes</h4>
+					</div>
+					<div class="panel-body">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Md5 Hash</th>
+									<th>Count</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="packet : ${top10hashes}">
+									<td th:text="${packet.Key}"></td>
+									<td th:text="${packet.Value}"></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+
+			<!-- =========== PANEL 5 =================== -->
 
 		</div>
 		<!-- end #content -->
@@ -416,12 +347,15 @@
 		class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
 		data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
 	<!-- end scroll to top btn -->
+
+	<script type="text/javascript" th:src="@{/js/stats.js}"
+		src="../../js/stats.js"></script>
+
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
 	</script>
-
 
 </body>
 </html>

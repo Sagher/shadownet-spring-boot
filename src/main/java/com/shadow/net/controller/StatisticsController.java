@@ -25,6 +25,8 @@ public class StatisticsController {
 
 		model.addAttribute("top10countries", CountTopTen.countByCountries(packets));
 		model.addAttribute("top10ips", CountTopTen.countByIps(packets));
+		model.addAttribute("top10urls", CountTopTen.countByUrls(packets));
+		model.addAttribute("top10hashes", CountTopTen.countByHash(packets));
 		
 		
 		return "statistics";
