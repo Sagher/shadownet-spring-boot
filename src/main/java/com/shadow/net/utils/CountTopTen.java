@@ -22,41 +22,14 @@ public class CountTopTen {
 	 */
 	public static Map<String, Integer> countByCountries(List<Packet> packets) {
 
-		Map<String, Integer> map = new HashMap<String, Integer>();
-
 		ArrayList<String> location = new ArrayList<String>();
 
 		for (int i = 0; i < packets.size(); i++) {
 
 			location.add(packets.get(i).location);
-
-		}
-		for (String temp : location) {
-			Integer count = map.get(temp);
-			map.put(temp, (count == null) ? 1 : count + 1);
 		}
 
-		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
-
-		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-
-			@Override
-			public int compare(Entry<String, Integer> one, Entry<String, Integer> two) {
-
-				return (two.getValue()).compareTo(one.getValue());
-			}
-		});
-
-		int count = 0;
-		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
-		for (Map.Entry<String, Integer> entry : list) {
-			if (count >= 10)
-				break;
-			sortedMap.put(entry.getKey(), entry.getValue());
-			count++;
-		}
-
-		return sortedMap;
+		return count(location);
 	}
 
 	/*
@@ -68,8 +41,6 @@ public class CountTopTen {
 	 */
 	public static Map<String, Integer> countByIps(List<Packet> packets) {
 
-		Map<String, Integer> map = new HashMap<String, Integer>();
-
 		ArrayList<String> ips = new ArrayList<String>();
 
 		for (int i = 0; i < packets.size(); i++) {
@@ -80,33 +51,8 @@ public class CountTopTen {
 
 			}
 		}
-		for (String temp : ips) {
-			Integer count = map.get(temp);
-			map.put(temp, (count == null) ? 1 : count + 1);
-		}
 
-		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
-
-		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-
-			@Override
-			public int compare(Entry<String, Integer> one, Entry<String, Integer> two) {
-
-				return (two.getValue()).compareTo(one.getValue());
-			}
-		});
-
-		int count = 0;
-		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
-		for (Map.Entry<String, Integer> entry : list) {
-
-			if (count >= 10)
-				break;
-			sortedMap.put(entry.getKey(), entry.getValue());
-			count++;
-		}
-
-		return sortedMap;
+		return count(ips);
 	}
 
 	/*
@@ -117,7 +63,6 @@ public class CountTopTen {
 	 * return Map<String,Integer>
 	 */
 	public static Object countByUrls(List<Packet> packets) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
 
 		ArrayList<String> urls = new ArrayList<String>();
 
@@ -125,33 +70,8 @@ public class CountTopTen {
 			if (packets.get(i).requestUrl != null)
 				urls.add(packets.get(i).requestUrl);
 		}
-		for (String temp : urls) {
-			Integer count = map.get(temp);
-			map.put(temp, (count == null) ? 1 : count + 1);
-		}
 
-		List<Map.Entry<String, Integer>> list = new ArrayList<Map.Entry<String, Integer>>(map.entrySet());
-
-		Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
-
-			@Override
-			public int compare(Entry<String, Integer> one, Entry<String, Integer> two) {
-
-				return (two.getValue()).compareTo(one.getValue());
-			}
-		});
-
-		int count = 0;
-		Map<String, Integer> sortedMap = new LinkedHashMap<String, Integer>();
-		for (Map.Entry<String, Integer> entry : list) {
-
-			if (count >= 10)
-				break;
-			sortedMap.put(entry.getKey(), entry.getValue());
-			count++;
-		}
-
-		return sortedMap;
+		return count(urls);
 	}
 
 	/*
@@ -161,8 +81,7 @@ public class CountTopTen {
 	 * 
 	 * return Map<String,Integer>
 	 */
-	public static Object countByHash(List<Packet> packets) {
-		Map<String, Integer> map = new HashMap<String, Integer>();
+	public static Map<String, Integer> countByHash(List<Packet> packets) {
 
 		ArrayList<String> hashes = new ArrayList<String>();
 
@@ -170,7 +89,21 @@ public class CountTopTen {
 			if (packets.get(i).hash != null)
 				hashes.add(packets.get(i).hash);
 		}
-		for (String temp : hashes) {
+
+		return count(hashes);
+	}
+
+	/*
+	 * Count
+	 * 
+	 * @Param(ArrayList<String>)
+	 * 
+	 * return Map<String,Integer>
+	 */
+	public static Map<String, Integer> count(ArrayList<String> packets) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+
+		for (String temp : packets) {
 			Integer count = map.get(temp);
 			map.put(temp, (count == null) ? 1 : count + 1);
 		}
