@@ -1,11 +1,8 @@
 $(function() {
-	$("#navbar-logo").load("/html-templates/navbarLogo.html");
 
-	$("#modal").load("/html-templates/modal.html");
+	$("#nav-left").load("/elements/nav-left.js");
 	
-	$("#up").load("/html-templates/up.html");
+	$("#sidebar").load("/elements/sidebar.js");
 	
-	$("#nav-left").load("/html-templates/nav-left.html");
-	
-	$("#sidebar").load("/html-templates/sidebar.html");
+	$("#modal").load("/elements/modal.js");
 });

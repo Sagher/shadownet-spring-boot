@@ -105,8 +105,6 @@
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 
-				<div id="navbar-logo"></div>
-
 				<div id="nav-left"></div>
 
 				<!-- begin header navigation right -->
@@ -275,6 +273,9 @@
 	<script>
 		$(document).ready(function() {
 			App.init();
+			setTimeout(function() {
+				$('.dashboard').toggleClass('active');
+			}, 5);
 		});
 	</script>
 </body>
