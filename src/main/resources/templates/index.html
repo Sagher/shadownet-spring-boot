@@ -99,33 +99,15 @@
 	</div>
 	<!-- end #page-loader -->
 
-
 	<!-- begin #page-container -->
 	<div id="page-container"
 		class="fade page-sidebar-minified page-sidebar-fixed page-header-fixed">
-		<!-- begin #header -->
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
-			<!-- begin container-fluid -->
 			<div class="container-fluid">
-				<!-- begin mobile sidebar expand / collapse button -->
-				<div class="navbar-header">
-					<a href="/" class="navbar-brand"><i class="fa fa-tachometer"
-						aria-hidden="true"></i> <b>Shadow-NET</b></a>
-					<button type="button" class="navbar-toggle"
-						data-click="sidebar-toggled">
-						<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
-					</button>
-					<!-- end mobile sidebar expand / collapse button -->
-				</div>
 
-				<ul class="nav navbar-nav">
-					<li class="active"><a href="/">DashBoard</a></li>
-					<li><a href="/urls">Request Urls</a></li>
-					<li><a href="/hashes">Hashes</a></li>
-					<li><a href="/blocklist">Block List</a></li>
-				</ul>
+				<div id="navbar-logo"></div>
 
+				<div id="nav-left"></div>
 
 				<!-- begin header navigation right -->
 				<ul class="nav navbar-nav navbar-right">
@@ -157,63 +139,14 @@
 		<!-- end #header -->
 
 		<!-- =================begin #sidebar ===================== -->
-		<div id="sidebar" class="sidebar">
-			<!-- begin sidebar scrollbar -->
-			<div data-scrollbar="true" data-height="100%">
-				<!-- begin sidebar nav -->
-				<ul class="nav">
-					<li class="nav-header">Navigation</li>
-					<li class="active"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-laptop"></i> <span>
-								Dashboard </span>
-					</a></li>
-
-					<li class="has-sub"><a href="#"><b
-							class="caret pull-right"></b><i class="fa fa-list"></i><span>MaliciousIPs</span></a>
-						<ul class="sub-menu">
-							<li><a href="/probing">PROBING</a></li>
-							<li><a href="/malware">MALWARE</a></li>
-							<li><a href="/web">WEB</a></li>
-							<li><a href="/sip">SIP</a></li>
-							<li><a href="/ssh">SSH</a></li>
-							<li><a href="/db">DB</a></li>
-						</ul></li>
-
-					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-link"></i> <span>Malicious
-								Requests</span></a>
-						<ul class="sub-menu">
-							<li><a href="/urls">Request Urls</a></li>
-						</ul></li>
-
-					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-file-text"></i> <span>Malicious
-								Responses</span></a>
-						<ul class="sub-menu">
-							<li><a href="/hashes">Md5 Hashes</a></li>
-						</ul></li>
-
-					<li class="has-sub"><a href="#"> <b
-							class="caret pull-right"></b> <i class="fa fa-bar-chart"></i> <span>
-								Statistics </span></a>
-						<ul class="sub-menu">
-							<li><a href="/statistics">Top 10 Countries</a></li>
-							<li><a href="/statistics#top10ips">Top 10 IPs</a></li>
-						</ul></li>
-
-				</ul>
-				<!-- end sidebar nav -->
-			</div>
-			<!-- end sidebar scrollbar -->
-		</div>
+		<div id="sidebar" class="sidebar"></div>
 		<div class="sidebar-bg"></div>
-		<!-- end #sidebar -->
+
 
 		<!-- ===============begin #content===================== -->
 		<div id="content" class="content">
 
 			<!--  =========================Panel 1============================== -->
-
 			<div class="panel panel-inverse">
 				<div class="panel-heading">
 					<div class="panel-heading-btn">
@@ -311,47 +244,13 @@
 				</div>
 			</div>
 
-			<!-- ============================= -->
 			<div class="countrycode" style="display: none"></div>
 		</div>
 		<!-- end #content -->
 	</div>
-	<!-- ============================== -->
 
 	<!-- CLEAR DB: MODAL -->
-	<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
-		aria-labelledby="myLargeModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Are you Sure?</h4>
-				</div>
-				<div class="modal-body">
-					<p>
-					<h5>This will erase all of the content stored in database.</h5>
-					</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">No</button>
-					<a href="/del"><button type="button" class="btn btn-danger"
-							data-dismiss="/del">Yes</button></a>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-	</div>
-
-	<!-- begin scroll to top btn -->
-	<a href="javascript:;"
-		class="btn btn-icon btn-circle btn-success btn-scroll-to-top fade"
-		data-click="scroll-top"><i class="fa fa-angle-up"></i></a>
-	<!-- end scroll to top btn -->
-
+	<div id="modal"></div>
 
 	<!-- ============= Page level JS ================== -->
 
@@ -371,13 +270,12 @@
 		src="../../js/filterReq.js"></script>
 	<script type="text/javascript" th:src="@{/js/charts.js}"
 		src="../../js/charts.js"></script>
+	<script type="text/javascript" th:src="@{/js/loadTemplates.js}"
+		src="../../js/loadTemplates.js"></script>
 	<script>
 		$(document).ready(function() {
 			App.init();
 		});
 	</script>
-
-
 </body>
 </html>
-
