@@ -1,3 +1,5 @@
+<div class="sidebar">
+
 <div data-scrollbar="true" data-height="100%">
 
 	<ul class="nav">
@@ -15,7 +17,7 @@
 				<li class="web"><a href="/web">WEB</a></li>
 				<li class="sip"><a href="/sip">SIP</a></li>
 				<li class="ssh"><a href="/ssh">SSH</a></li>
-				<li class="db"><a href="/db">DB</a></li>
+				<li class="db"><a href="/db">DATABASE</a></li>
 			</ul></li>
 
 		<li class="has-sub urls"><a href="#"> <b class="caret pull-right"></b>
@@ -29,7 +31,7 @@
 				<i class="fa fa-file-text"></i> <span>Malicious Responses</span>
 		</a>
 			<ul class="sub-menu">
-				<li class="hashes"><a href="/hashes">Matched Md5 Hashes</a></li>
+				<li class="hashes"><a href="/hashes">Md5 Hashes</a></li>
 			</ul></li>
 
 		<li class="stats has-sub"><a href="#"> <b
@@ -43,3 +45,5 @@
 			</ul></li>
 	</ul>
 </div>
+</div>
+<div class="sidebar-bg"></div>

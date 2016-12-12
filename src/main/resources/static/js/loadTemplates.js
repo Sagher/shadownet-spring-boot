@@ -1,6 +1,6 @@
 $(function() {
 
-	$("#nav-left").load("/elements/nav-left.js");
+	$("#nav-left").load("/elements/navbar-left.js");
 	
 	$("#sidebar").load("/elements/sidebar.js");
 	
