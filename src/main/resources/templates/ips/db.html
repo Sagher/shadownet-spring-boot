@@ -89,43 +89,19 @@
 		<div id="header" class="header navbar navbar-default navbar-fixed-top">
 			<div class="container-fluid">
 
-				<div id="nav-left"></div>
+				<div id="navigation"></div>
 
-				<!-- begin header navigation right -->
-				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown navbar-user"><a href="javascript:;"
-						class="dropdown-toggle" data-toggle="dropdown"> <img
-							src="assets/img/user-7.jpg" alt="" /> <span class="hidden-xs"><text
-									th:inline="text"> [[${#httpServletRequest.remoteUser}]]</text></span>
-							<b class="caret"></b>
-					</a>
-						<ul class="dropdown-menu animated fadeInLeft">
-							<li class="arrow"></li>
-							<li><a href="/">Dashboard</a></li>
-							<li><a href="/blocklist">Block List</a></li>
-							<li data-toggle="modal" data-target=".bd-example-modal-lg"><a
-								href="javascript:;">Clear Database</a></li>
-							<li class="divider"></li>
-							<li style="padding-left: 10px">
-								<form th:action="@{/logout}" method="post">
-									<button class="btn-xs btn-default" type="submit">Log
-										Out</button>
-								</form>
-							</li>
-						</ul></li>
-				</ul>
-				<!-- end header navigation right -->
 			</div>
 			<!-- end container-fluid -->
 		</div>
 		<!-- end #header -->
 
-		<!-- =================begin #sidebar ===================== -->
+		<!-- begin #sidebar -->
 		<div id="sidebar"></div>
 
-		<!-- ===============begin #content===================== -->
+		<!-- begin #content -->
 		<div id="content" class="content">
-		
+
 			<!-- begin breadcrumb -->
 			<ol class="breadcrumb pull-right">
 				<li><a href="/">Home</a></li>
@@ -182,6 +158,15 @@
 	<!-- CLEAR DB: MODAL -->
 	<div id="modal"></div>
 
+	<div style="display: none">
+		<div id="sessionuser" th:inline="text">
+			[[${#httpServletRequest.remoteUser}]]</div>
+
+		<form id="hiddenform" th:action="@{/logout}" method="post">
+			<button class="btn-xs btn-default" type="submit">Log Out</button>
+		</form>
+	</div>
+
 	<script type="text/javascript" th:src="@{/js/loadTemplates.js}"
 		src="../../js/loadTemplates.js"></script>
 	<script>
@@ -190,10 +175,9 @@
 			setTimeout(function() {
 				$('.list').toggleClass('active');
 				$('.db').toggleClass('active');
-			}, 5);
+			}, 100);
 		});
 	</script>
-
 </body>
 </html>
 
