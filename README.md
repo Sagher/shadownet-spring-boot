@@ -5,7 +5,7 @@ Default credentials:
     Username: admin
     Password: admin
 
-#####Technologies Used:
+##### Technologies Used:
 - [Spring MVC](http://docs.spring.io/spring/docs/current/spring-framework-reference/html/mvc.html)
 - [Thymeleaf](http://www.thymeleaf.org/)
 - [Mongodb](https://www.mongodb.com/)
