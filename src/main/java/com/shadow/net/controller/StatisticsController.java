@@ -13,24 +13,21 @@ import com.shadow.net.utils.CountTopTen;
 @Controller
 public class StatisticsController {
 
+    @Autowired
+    private PacketRepository packetRepo;
 
-	@Autowired
-	private PacketRepository packetRepo;
-	
+    @RequestMapping(value = "/statistics", method = RequestMethod.GET)
+    public String home(Model model) {
 
-	@RequestMapping(value = "/statistics", method = RequestMethod.GET)
-	public String home(Model model) {
-	
-		java.util.List<Packet> packets = packetRepo.findAll();
+        java.util.List<Packet> packets = packetRepo.findAll();
 
-		model.addAttribute("top10countries", CountTopTen.countByCountries(packets));
-		model.addAttribute("top10ips", CountTopTen.countByIps(packets));
-		model.addAttribute("top10urls", CountTopTen.countByUrls(packets));
-		model.addAttribute("top10hashes", CountTopTen.countByHash(packets));
-		
-		
-		return "statistics";
+        model.addAttribute("top10countries", CountTopTen.countByCountries(packets));
+        model.addAttribute("top10ips", CountTopTen.countByIps(packets));
+        model.addAttribute("top10urls", CountTopTen.countByUrls(packets));
+        model.addAttribute("top10hashes", CountTopTen.countByHash(packets));
 
-}
-	
+        return "statistics";
+
+    }
+
 }

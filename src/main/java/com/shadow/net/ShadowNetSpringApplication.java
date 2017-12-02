@@ -8,11 +8,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories("com.shadow.net.repository")
 public class ShadowNetSpringApplication {
 
-	
-	public static void main(String[] args) {
-		SpringApplication.run(ShadowNetSpringApplication.class, args);
-	}
-	
-	public void run() {
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ShadowNetSpringApplication.class, args);
+    }
+
+//    public void run() {
+//    }
 }

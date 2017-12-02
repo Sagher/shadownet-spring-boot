@@ -23,108 +23,104 @@ import com.shadow.net.repository.PacketRepository;
 @Controller
 public class HomeController {
 
-	@Autowired
-	private PacketRepository packetRepo;
+    @Autowired
+    private PacketRepository packetRepo;
 
-	ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
-	MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
+    ApplicationContext ctx = new AnnotationConfigApplicationContext(SpringMongoConfig.class);
+    MongoOperations mongoOperation = (MongoOperations) ctx.getBean("mongoTemplate");
 
-	DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, HH:mm:ss.SS");
+    DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy, HH:mm:ss.SS");
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model, @RequestParam(value = "filter", defaultValue = "all") String filter) {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public String home(Model model, @RequestParam(value = "filter", defaultValue = "all") String filter) {
 
-		if (filter.equals("all")) {
-			model.addAttribute("pronum", packetRepo.countByMaliciousType("PROBING"));
-			model.addAttribute("malnum", packetRepo.countByMaliciousType("MALWARE"));
-			model.addAttribute("webnum", packetRepo.countByMaliciousType("WEB"));
-			model.addAttribute("sipnum", packetRepo.countByMaliciousType("SIP"));
-			model.addAttribute("sshnum", packetRepo.countByMaliciousType("SSH"));
-			model.addAttribute("dbnum", packetRepo.countByMaliciousType("DB"));
-		}
+        if (filter.equals("all")) {
+            model.addAttribute("pronum", packetRepo.countByMaliciousType("PROBING"));
+            model.addAttribute("malnum", packetRepo.countByMaliciousType("MALWARE"));
+            model.addAttribute("webnum", packetRepo.countByMaliciousType("WEB"));
+            model.addAttribute("sipnum", packetRepo.countByMaliciousType("SIP"));
+            model.addAttribute("sshnum", packetRepo.countByMaliciousType("SSH"));
+            model.addAttribute("dbnum", packetRepo.countByMaliciousType("DB"));
+        } else if (filter.equals("hour")) {
 
-		else if (filter.equals("hour")) {
+            Date today = new Date();
+            String lastHour = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60)));
 
-			Date today = new Date();
-			String lastHour = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60)));
+            long pronum = filterContent(lastHour, "PROBING");
+            model.addAttribute("pronum", pronum);
 
-			long pronum = filterContent(lastHour, "PROBING");
-			model.addAttribute("pronum", pronum);
+            long malnum = filterContent(lastHour, "MALWARE");
+            model.addAttribute("malnum", malnum);
 
-			long malnum = filterContent(lastHour, "MALWARE");
-			model.addAttribute("malnum", malnum);
+            long webnum = filterContent(lastHour, "WEB");
+            model.addAttribute("webnum", webnum);
 
-			long webnum = filterContent(lastHour, "WEB");
-			model.addAttribute("webnum", webnum);
+            long sipnum = filterContent(lastHour, "SIP");
+            model.addAttribute("sipnum", sipnum);
 
-			long sipnum = filterContent(lastHour, "SIP");
-			model.addAttribute("sipnum", sipnum);
+            long sshnum = filterContent(lastHour, "SSH");
+            model.addAttribute("sshnum", sshnum);
 
-			long sshnum = filterContent(lastHour, "SSH");
-			model.addAttribute("sshnum", sshnum);
+            long dbnum = filterContent(lastHour, "DB");
+            model.addAttribute("dbnum", dbnum);
 
-			long dbnum = filterContent(lastHour, "DB");
-			model.addAttribute("dbnum", dbnum);
+        } else if (filter.equals("day")) {
 
-		}
+            Date today = new Date();
+            String lastDay = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24)));
 
-		else if (filter.equals("day")) {
+            long pronum = filterContent(lastDay, "PROBING");
+            model.addAttribute("pronum", pronum);
 
-			Date today = new Date();
-			String lastDay = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24)));
+            long malnum = filterContent(lastDay, "MALWARE");
+            model.addAttribute("malnum", malnum);
 
-			long pronum = filterContent(lastDay, "PROBING");
-			model.addAttribute("pronum", pronum);
+            long webnum = filterContent(lastDay, "WEB");
+            model.addAttribute("webnum", webnum);
 
-			long malnum = filterContent(lastDay, "MALWARE");
-			model.addAttribute("malnum", malnum);
+            long sipnum = filterContent(lastDay, "SIP");
+            model.addAttribute("sipnum", sipnum);
 
-			long webnum = filterContent(lastDay, "WEB");
-			model.addAttribute("webnum", webnum);
+            long sshnum = filterContent(lastDay, "SSH");
+            model.addAttribute("sshnum", sshnum);
 
-			long sipnum = filterContent(lastDay, "SIP");
-			model.addAttribute("sipnum", sipnum);
+            long dbnum = filterContent(lastDay, "DB");
+            model.addAttribute("dbnum", dbnum);
 
-			long sshnum = filterContent(lastDay, "SSH");
-			model.addAttribute("sshnum", sshnum);
+        } else if (filter.equals("week")) {
 
-			long dbnum = filterContent(lastDay, "DB");
-			model.addAttribute("dbnum", dbnum);
+            Date today = new Date();
+            String lastWeek = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24 * 7)));
 
-		} else if (filter.equals("week")) {
+            long pronum = filterContent(lastWeek, "PROBING");
+            model.addAttribute("pronum", pronum);
 
-			Date today = new Date();
-			String lastWeek = dateFormat.format(new Date(today.getTime() - (1000 * 60 * 60 * 24 * 7)));
+            long malnum = filterContent(lastWeek, "MALWARE");
+            model.addAttribute("malnum", malnum);
 
-			long pronum = filterContent(lastWeek, "PROBING");
-			model.addAttribute("pronum", pronum);
+            long webnum = filterContent(lastWeek, "WEB");
+            model.addAttribute("webnum", webnum);
 
-			long malnum = filterContent(lastWeek, "MALWARE");
-			model.addAttribute("malnum", malnum);
+            long sipnum = filterContent(lastWeek, "SIP");
+            model.addAttribute("sipnum", sipnum);
 
-			long webnum = filterContent(lastWeek, "WEB");
-			model.addAttribute("webnum", webnum);
+            long sshnum = filterContent(lastWeek, "SSH");
+            model.addAttribute("sshnum", sshnum);
 
-			long sipnum = filterContent(lastWeek, "SIP");
-			model.addAttribute("sipnum", sipnum);
+            long dbnum = filterContent(lastWeek, "DB");
+            model.addAttribute("dbnum", dbnum);
 
-			long sshnum = filterContent(lastWeek, "SSH");
-			model.addAttribute("sshnum", sshnum);
+        }
 
-			long dbnum = filterContent(lastWeek, "DB");
-			model.addAttribute("dbnum", dbnum);
+        return "index";
+    }
 
-		}
+    private long filterContent(String filter, String type) {
+        Query query = new Query();
+        query.addCriteria(Criteria.where("time").gt(filter));
+        query.addCriteria(Criteria.where("maliciousType").is(type));
 
-		return "index";
-	}
-
-	private long filterContent(String filter, String type) {
-		Query query = new Query();
-		query.addCriteria(Criteria.where("time").gt(filter));
-		query.addCriteria(Criteria.where("maliciousType").is(type));
-
-		long count = mongoOperation.count(query, Packet.class);
-		return count;
-	}
+        long count = mongoOperation.count(query, Packet.class);
+        return count;
+    }
 }

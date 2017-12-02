@@ -6,69 +6,69 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document(collection = "MaliciousPackets")
 public class Packet {
 
-	@Id
-	public String id;
+    @Id
+    public String id;
 
-	public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash, location,countryCode;
+    public String time, sourceIP, destinationIP, direction, maliciousType, requestUrl, hash, location, countryCode;
 
-	int sourcePort, destPort, segments;
-	
-	Boolean urlCheck, hashStatus;
+    int sourcePort, destPort, segments;
 
-	public String getId() {
-		return id;
-	}
+    Boolean urlCheck, hashStatus;
 
-	public String getTime() {
-		return time;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public String getSourceIP() {
-		return sourceIP;
-	}
+    public String getTime() {
+        return time;
+    }
 
-	public String getDestinationIP() {
-		return destinationIP;
-	}
+    public String getSourceIP() {
+        return sourceIP;
+    }
 
-	public String getDirection() {
-		return direction;
-	}
+    public String getDestinationIP() {
+        return destinationIP;
+    }
 
-	public String getMaliciousType() {
-		return maliciousType;
-	}
+    public String getDirection() {
+        return direction;
+    }
 
-	public int getSourcePort() {
-		return sourcePort;
-	}
+    public String getMaliciousType() {
+        return maliciousType;
+    }
 
-	public int getDestPort() {
-		return destPort;
-	}
+    public int getSourcePort() {
+        return sourcePort;
+    }
 
-	public String getRequestUrl() {
-		return requestUrl;
-	}
+    public int getDestPort() {
+        return destPort;
+    }
 
-	public Boolean getUrlCheck() {
-		return urlCheck;
-	}
-	
-	public String getHash(){
-		return hash;
-	}
-	
-	public Boolean getHashStatus(){
-		return hashStatus;
-	}
-	
-	public String getLocation(){
-		return location;
-	}
-	
-	public String getCountryCode(){
-		return countryCode;
-	}
+    public String getRequestUrl() {
+        return requestUrl;
+    }
+
+    public Boolean getUrlCheck() {
+        return urlCheck;
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public Boolean getHashStatus() {
+        return hashStatus;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public String getCountryCode() {
+        return countryCode;
+    }
 
 }

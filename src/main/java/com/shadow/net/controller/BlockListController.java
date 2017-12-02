@@ -1,6 +1,5 @@
 package com.shadow.net.controller;
 
-import java.io.IOException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,31 +15,28 @@ import com.shadow.net.utils.ExecuteShellScript;
 @Controller
 public class BlockListController {
 
-	@Autowired
-	private BlockListRepo blockListRepo;
+    @Autowired
+    private BlockListRepo blockListRepo;
 
+    @RequestMapping(value = "/blocklist", method = RequestMethod.GET)
+    public String setting(Model model, @RequestParam(value = "ip", defaultValue = "default") String ip) {
 
-	@RequestMapping(value = "/blocklist", method = RequestMethod.GET)
-	public String setting(Model model, @RequestParam(value = "ip", defaultValue = "default") String ip)
-			throws IOException {
+        if (ip.equals("default")) {
+            model.addAttribute("blockList", blockListRepo.findAll());
+            return "blocklist";
+        } else {
+            ExecuteShellScript execute = new ExecuteShellScript();
+            execute.blockIP(ip);
 
-		if (ip.equals("default")) {
-			model.addAttribute("blockList", blockListRepo.findAll());
-			return "blocklist";
-		} else {
-			ExecuteShellScript execute = new ExecuteShellScript();
-			execute.blockIP(ip);
+            BlockList bl = new BlockList();
+            bl.setSourceIP(ip);
+            bl.setLocation(GeoIPv4.getLocation(ip));
 
-			BlockList bl = new BlockList();
-			bl.setSourceIP(ip);
-			bl.setLocation(GeoIPv4.getLocation(ip));
+            blockListRepo.save(bl);
 
-			blockListRepo.save(bl);
+            model.addAttribute("blockList", blockListRepo.findAll());
+            return "blocklist";
+        }
+    }
 
-			model.addAttribute("blockList", blockListRepo.findAll());
-			return "blocklist";
-
-		}
-
-	}
 }

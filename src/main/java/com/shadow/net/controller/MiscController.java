@@ -10,29 +10,28 @@ import com.shadow.net.repository.PacketRepository;
 @Controller
 public class MiscController {
 
-	@Autowired
-	private PacketRepository packetRepo;
+    @Autowired
+    private PacketRepository packetRepo;
 
+    @RequestMapping(value = "/urls", method = RequestMethod.GET)
+    public String urls(Model model) {
+        model.addAttribute("urls", packetRepo.findByUrlCheckOrderByTimeDesc(true));
+        return "urls";
 
-	@RequestMapping(value = "/urls", method = RequestMethod.GET)
-	public String urls(Model model) {
-		model.addAttribute("urls", packetRepo.findByUrlCheckOrderByTimeDesc(true));
-		return "urls";
+    }
 
-	}
+    @RequestMapping(value = "/hashes", method = RequestMethod.GET)
+    public String hashes(Model model) {
+        model.addAttribute("hashes", packetRepo.findByHashStatusOrderByTimeDesc(true));
+        return "hashes";
 
-	@RequestMapping(value = "/hashes", method = RequestMethod.GET)
-	public String hashes(Model model) {
-		model.addAttribute("hashes", packetRepo.findByHashStatusOrderByTimeDesc(true));
-		return "hashes";
+    }
 
-	}
+    @RequestMapping(value = "/del", method = RequestMethod.GET)
+    public String del(Model model) {
+        packetRepo.deleteAll();
+        return "redirect:/";
 
-	@RequestMapping(value = "/del", method = RequestMethod.GET)
-	public String del(Model model) {
-		packetRepo.deleteAll();
-		return "redirect:/";
-
-	}
+    }
 
 }

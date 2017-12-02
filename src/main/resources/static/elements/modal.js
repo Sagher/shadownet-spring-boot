@@ -20,6 +20,5 @@
 						data-dismiss="/del">Yes</button></a>
 			</div>
 		</div>
-		<!-- /.modal-content -->
 	</div>
 </div>

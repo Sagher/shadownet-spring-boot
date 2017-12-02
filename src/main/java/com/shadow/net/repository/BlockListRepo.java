@@ -7,9 +7,11 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import com.shadow.net.model.BlockList;
 
 public interface BlockListRepo extends MongoRepository<BlockList, String> {
-	
-	List<BlockList> findAll();
 
-	BlockList findOne(String sourceIP);
+    @Override
+    List<BlockList> findAll();
+
+    @Override
+    BlockList findOne(String sourceIP);
 
 }
